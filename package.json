@@ -4,9 +4,9 @@
   "description": "A REST API that accesses Smart Pest's NoSQL database to provide access to lead information and materials pricing for bid calculations.",
   "main": "app.js",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon dist/app.js"
+    "dev": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/Ashley-Owens/SmartPestAPI#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "@google-cloud/datastore": "^6.6.2",
+    "express": "^4.17.2",
+    "gstore-node": "^7.2.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
