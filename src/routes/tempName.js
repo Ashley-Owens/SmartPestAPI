@@ -1,5 +1,6 @@
-// const ds = require('../datastore.js');
+const ds = require("../datastore.js");
 const gstore = require("../config/datastore.js");
+// gstore.connect(datastore);
 const RoachModel = require("../models/roach.model");
 
 // In a Controller request:

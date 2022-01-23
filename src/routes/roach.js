@@ -1,5 +1,5 @@
-const gstore = require("../config/datastore.js");
-const RoachModel = require("../models/roach.model.js");
+// const gstore = require("../config/datastore.js");
+const RoachModel = require("../models/roach.model");
 const express = require("express");
 const router = express.Router();
 

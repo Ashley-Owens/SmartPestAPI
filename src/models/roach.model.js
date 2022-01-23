@@ -1,5 +1,6 @@
-const gstore = require("../config/datastore.js");
-const Schema = gstore.Schema;
+const { instances } = require("gstore-node");
+const gstore = instances.get("unique-id");
+const { Schema } = gstore;
 
 // Create the "Roach Assessment" schema
 const roachSchema = new Schema(
@@ -24,5 +25,17 @@ const roachSchema = new Schema(
 	}
 );
 
-// Create the "Roach Assessment" model
-const RoachModel = gstore.model("RoachAssessment", roachSchema);
+/*
+ * List entities query shortcut
+ */
+const listSettings = {
+	limit: 15,
+	order: { property: "address" },
+};
+roachSchema.queries("list", listSettings);
+
+/*
+ * Export the Roach Model
+ * It will generate "RoachAssessment" entity kind in Datastore
+ */
+module.exports = gstore.model("RoachAssessment", roachSchema);
