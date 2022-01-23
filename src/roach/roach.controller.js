@@ -1,25 +1,33 @@
 const Model = require("./roach.model");
 
-const getRoachAssessments = (req, res) => {
+/* Returns all Roach Assessment Entities */
+const getRoachAssessments = async (req, res) => {
 	const pageCursor = req.query.cursor;
-
-	// List users with the Query settings defined on Schema
-	Model.list({ start: pageCursor })
-		.then((entities) => {
-			res.json(entities);
-		})
-		.catch((err) => res.status(400).json(err));
+	try {
+		const { entities } = await Model.list({ start: pageCursor });
+		res.status(200).json(entities);
+	} catch (err) {
+		console.log(err);
+		res.status(400).json(err);
+	}
 };
 
-async function createRoachEntity(data) {
-	const roach = new Model(data);
-	return await roach.save();
-}
+/* Creates a new Roach Assessment Entity */
+const createRoachEntity = async (req, res) => {
+	try {
+		const entity = await new Model(req.body).save();
+		res.status(201).json(entity);
+	} catch (err) {
+		console.log(err);
+		res.status(400).send({
+			Error: "The request object is missing at least one of the required attributes",
+		});
+	}
+};
 
 module.exports = {
 	getRoachAssessments,
-	// getUser,
 	createRoachEntity,
-	// updateUser,
-	// deleteUser
+	// getRoachAssessment,
+	// updateRoachAssessment,
 };

@@ -30,7 +30,7 @@ const roachSchema = new Schema(
  */
 const listSettings = {
 	limit: 15,
-	order: { property: "address" },
+	order: { property: "dateCreated" },
 };
 roachSchema.queries("list", listSettings);
 
