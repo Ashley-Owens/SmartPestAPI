@@ -9,7 +9,7 @@ const roachSchema = new Schema(
 		address: { type: String, required: true },
 		technician: { type: String, required: true },
 		dateCreated: { type: Date, default: gstore.defaultValues.NOW },
-		dateModified: { type: Date, required: true },
+		dateModified: { type: Date },
 		madeContact: { type: Boolean, required: true },
 		numBuilding: { type: Number, required: true },
 		numUnit: { type: Number, required: true },

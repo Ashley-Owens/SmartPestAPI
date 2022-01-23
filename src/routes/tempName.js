@@ -1,7 +1,7 @@
 const ds = require("../datastore.js");
-const gstore = require("../config/datastore.js");
+const gstore = require("../config/database.js");
 // gstore.connect(datastore);
-const RoachModel = require("../models/roach.model");
+const RoachModel = require("../roach/roach.model");
 
 // In a Controller request:
 var data = req.body; // {name: 'John'}; // ---> email is missing
