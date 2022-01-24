@@ -12,11 +12,23 @@ const getRoachAssessments = async (req, res) => {
 	}
 };
 
+/* Retrieves a single Roach Assessment Entity by ID */
+const getRoachAssessment = async (req, res) => {
+	try {
+		const id = parseInt(req.params.id, 10);
+		const entity = await Model.get(id);
+		res.status(200).json(entity.plain());
+	} catch (err) {
+		res.status(400).json(err);
+	}
+};
+
 /* Creates a new Roach Assessment Entity */
 const createRoachEntity = async (req, res) => {
 	try {
-		const entity = await new Model(req.body).save();
-		res.status(201).json(entity);
+		const data = Model.sanitize(req.body);
+		const entity = await new Model(data).save();
+		res.status(201).json(entity.plain());
 	} catch (err) {
 		console.log(err);
 		res.status(400).send({
@@ -27,7 +39,7 @@ const createRoachEntity = async (req, res) => {
 
 module.exports = {
 	getRoachAssessments,
+	getRoachAssessment,
 	createRoachEntity,
-	// getRoachAssessment,
 	// updateRoachAssessment,
 };

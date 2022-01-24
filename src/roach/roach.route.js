@@ -7,7 +7,8 @@ router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
 // Handles router requests
-router.post("/", Controller.createRoachEntity);
 router.get("/", Controller.getRoachAssessments);
+router.get("/:id", Controller.getRoachAssessment);
+router.post("/", Controller.createRoachEntity);
 
 module.exports = router;
