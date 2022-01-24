@@ -7,6 +7,8 @@ const roachSchema = new Schema(
 	{
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
+		zipCode: { type: String, required: true },
+		city: { type: String, required: true },
 		technician: { type: String, required: true },
 		dateCreated: { type: Date, default: gstore.defaultValues.NOW },
 		dateModified: { type: Date },
@@ -20,7 +22,6 @@ const roachSchema = new Schema(
 	{
 		queries: {
 			readAll: true,
-			showKey: true,
 		},
 	}
 );
