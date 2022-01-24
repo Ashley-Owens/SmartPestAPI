@@ -25,17 +25,12 @@ const roachSchema = new Schema(
 	}
 );
 
-/*
- * List entities query shortcut
- */
+// Query shortcut for listing entities
 const listSettings = {
 	limit: 15,
 	order: { property: "dateCreated" },
 };
 roachSchema.queries("list", listSettings);
 
-/*
- * Export the Roach Model
- * It will generate "RoachAssessment" entity kind in Datastore
- */
+// Generates "RoachAssessment" entity kind in Datastore
 module.exports = gstore.model("RoachAssessment", roachSchema);

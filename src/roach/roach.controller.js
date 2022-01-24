@@ -7,7 +7,6 @@ const getRoachAssessments = async (req, res) => {
 		const { entities } = await Model.list({ start: pageCursor });
 		res.status(200).json(entities);
 	} catch (err) {
-		console.log(err);
 		res.status(400).json(err);
 	}
 };
@@ -24,22 +23,34 @@ const getRoachAssessment = async (req, res) => {
 };
 
 /* Creates a new Roach Assessment Entity */
-const createRoachEntity = async (req, res) => {
+const createRoachAssessment = async (req, res) => {
 	try {
 		const data = Model.sanitize(req.body);
 		const entity = await new Model(data).save();
 		res.status(201).json(entity.plain());
 	} catch (err) {
-		console.log(err);
-		res.status(400).send({
-			Error: "The request object is missing at least one of the required attributes",
-		});
+		res.status(400).json(err);
+	}
+};
+
+/* Updates or replaces data for specified Roach Assessment Entity */
+const updateRoachAssessment = async (req, res) => {
+	try {
+		req.body.dateModified = new Date();
+		const id = parseInt(req.params.id, 10);
+		const data = Model.sanitize(req.body);
+		const entity = await Model.update(id, data);
+		res.status(200).json(entity.plain());
+
+		// Catches schema validation errors or invalid id
+	} catch (err) {
+		res.status(400).json(err);
 	}
 };
 
 module.exports = {
 	getRoachAssessments,
 	getRoachAssessment,
-	createRoachEntity,
-	// updateRoachAssessment,
+	createRoachAssessment,
+	updateRoachAssessment,
 };

@@ -9,6 +9,7 @@ router.use(express.json());
 // Handles router requests
 router.get("/", Controller.getRoachAssessments);
 router.get("/:id", Controller.getRoachAssessment);
-router.post("/", Controller.createRoachEntity);
+router.post("/", Controller.createRoachAssessment);
+router.put("/:id", Controller.updateRoachAssessment);
 
 module.exports = router;
