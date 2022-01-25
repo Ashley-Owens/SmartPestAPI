@@ -28,8 +28,7 @@ const roachSchema = new Schema(
 
 // Query shortcut for listing entities
 const listSettings = {
-	limit: 15,
-	order: { property: "dateCreated", descending: true },
+	order: { property: "dateCreated" },
 };
 roachSchema.queries("list", listSettings);
 

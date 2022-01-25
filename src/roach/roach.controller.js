@@ -1,9 +1,9 @@
 /* Returns all entities for the given model */
 const getAllEntities = async (req, res, Model) => {
-	const pageCursor = req.query.cursor;
-	console.log(Model);
+	// const pageCursor = req.query.cursor;
+	// console.log(Model);
 	try {
-		const { entities } = await Model.list({ start: pageCursor });
+		const { entities } = await Model.list();
 		console.log(entities);
 		return res.status(200).json(entities);
 	} catch (err) {
@@ -24,13 +24,14 @@ const getEntity = async (req, res, Model) => {
 
 /* Creates a new entity for the given model */
 const createEntity = async (req, res, Model) => {
-	if (req.get("content-type") !== "application/json") {
-		res.status(406).send({
-			Error: "Server only accepts application/json data",
-		});
-		return;
-	}
+	// if (req.get("content-type") !== "application/json") {
+	// 	res.status(406).send({
+	// 		Error: "Server only accepts application/json data",
+	// 	});
+	// 	return;
+	// }
 	try {
+		console.log("trying...");
 		const data = Model.sanitize(req.body);
 		console.log("before save");
 		const entity = await new Model(data).save();
