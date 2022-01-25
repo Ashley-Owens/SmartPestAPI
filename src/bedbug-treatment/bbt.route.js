@@ -1,6 +1,6 @@
 const express = require("express");
 const Controller = require("../controller/controller");
-const Model = require("./bb.model");
+const Model = require("./bbt.model");
 
 // Initializes router
 const router = express.Router();

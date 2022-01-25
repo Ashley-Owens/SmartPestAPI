@@ -3,7 +3,7 @@ const gstore = instances.get("default");
 const { Schema } = gstore;
 
 // Create the "Roach Assessment" schema
-const schema = new Schema(
+const roachSchema = new Schema(
 	{
 		numBuilding: { type: Number, required: true },
 		numUnit: { type: Number, required: true },
@@ -29,9 +29,9 @@ const schema = new Schema(
 // Query shortcut for listing entities
 const listSettings = {
 	limit: 15,
-	order: { property: "dateCreated" },
+	order: { property: "dateCreated", descending: true },
 };
-schema.queries("list", listSettings);
+roachSchema.queries("list", listSettings);
 
 // Generates "RoachAssessment" entity kind in Datastore
-module.exports = gstore.model("RoachAssessment", schema);
+module.exports = gstore.model("RoachAssessment", roachSchema);
