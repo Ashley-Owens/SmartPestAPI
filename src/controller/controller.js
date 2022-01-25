@@ -22,6 +22,12 @@ const getEntity = async (req, res, model) => {
 
 /* Creates a new entity for the given model */
 const createEntity = async (req, res, model) => {
+	if (req.get("content-type") !== "application/json") {
+		res.status(406).send({
+			Error: "Server only accepts application/json data",
+		});
+		return;
+	}
 	try {
 		const data = model.sanitize(req.body);
 		const entity = await new model(data).save();
@@ -33,6 +39,12 @@ const createEntity = async (req, res, model) => {
 
 /* Updates or replaces data for specified entity model ID */
 const updateEntity = async (req, res, model) => {
+	if (req.get("content-type") !== "application/json") {
+		res.status(406).send({
+			Error: "Server only accepts application/json data",
+		});
+		return;
+	}
 	try {
 		req.body.dateModified = new Date();
 		const id = parseInt(req.params.id, 10);
