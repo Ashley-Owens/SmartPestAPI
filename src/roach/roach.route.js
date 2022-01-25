@@ -1,6 +1,5 @@
 const express = require("express");
-// const Controller = require("../controller/controller");
-const Controller = require("./roach.controller");
+const Controller = require("../controller/controller");
 const Model = require("./roach.model");
 
 // Initializes router
