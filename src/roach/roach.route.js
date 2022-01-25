@@ -1,5 +1,6 @@
 const express = require("express");
-const Controller = require("./roach.controller");
+const Controller = require("../controller/controller");
+const Model = require("./roach.model");
 
 // Initializes router
 const router = express.Router();
@@ -7,9 +8,11 @@ router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
 // Handles router requests
-router.get("/", Controller.getRoachAssessments);
-router.get("/:id", Controller.getRoachAssessment);
-router.post("/", Controller.createRoachAssessment);
-router.put("/:id", Controller.updateRoachAssessment);
+router.get("/", async (req, res) => Controller.getAllEntities(req, res, Model));
+router.get("/:id", async (req, res) => Controller.getEntity(req, res, Model));
+router.post("/", async (req, res) => Controller.createEntity(req, res, Model));
+router.put("/:id", async (req, res) =>
+	Controller.updateEntity(req, res, Model)
+);
 
 module.exports = router;
