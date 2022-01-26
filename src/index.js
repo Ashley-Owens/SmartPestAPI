@@ -8,3 +8,4 @@ router.use("/dewebbing", require("./dewebbing/dewebbing.route"));
 router.use("/honeycomb", require("./honeycomb/honeycomb.route"));
 router.use("/mosquito", require("./mosquito/mosquito.route"));
 router.use("/roach-assessment", require("./roach-assessment/roach.route"));
+router.use("/snake", require("./snake/snake.route"));
