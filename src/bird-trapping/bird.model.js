@@ -6,9 +6,8 @@ const { Schema } = gstore;
 const schema = new Schema(
 	{
 		numTraps: { type: Number, required: true },
-		numStations: { type: Number, required: true },
-		buildingNum: { type: Number, required: true },
-		unitNum: { type: Number, required: true },
+		numBuildings: { type: Number, required: true },
+		numUnits: { type: Number, required: true },
 		observations: { type: String, required: true },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
