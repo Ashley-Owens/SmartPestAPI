@@ -1,6 +1,6 @@
 const express = require("express");
 const Controller = require("../controller/controller");
-const Model = require("./roach.model");
+const Model = require("./bbi.model");
 
 // Initializes router
 const router = express.Router();

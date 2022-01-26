@@ -3,9 +3,7 @@ const { Datastore } = require("@google-cloud/datastore");
 
 // Initialize new Datastore and ORM instances
 const gstore = new Gstore();
-const datastore = new Datastore({
-	projectId: "smartpestapi",
-});
+const datastore = new Datastore();
 
 // Connect gstore to datastore and save instance
 gstore.connect(datastore);
