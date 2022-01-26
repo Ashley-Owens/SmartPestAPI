@@ -2,8 +2,8 @@ const { instances } = require("gstore-node");
 const gstore = instances.get("default");
 const { Schema } = gstore;
 
-// Create the "Roach Assessment" schema
-const roachSchema = new Schema(
+// Creates the "Roach Assessment" schema
+const schema = new Schema(
 	{
 		numBuilding: { type: Number, required: true },
 		numUnit: { type: Number, required: true },
@@ -11,6 +11,7 @@ const roachSchema = new Schema(
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
 		city: { type: String, required: true },
+		state: { type: String, required: true },
 		technician: { type: String, required: true },
 		madeContact: { type: Boolean, required: true },
 		contactName: { type: String },
@@ -30,7 +31,7 @@ const roachSchema = new Schema(
 const listSettings = {
 	order: { property: "dateCreated" },
 };
-roachSchema.queries("list", listSettings);
+schema.queries("list", listSettings);
 
 // Generates "RoachAssessment" entity kind in Datastore
-module.exports = gstore.model("RoachAssessment", roachSchema);
+module.exports = gstore.model("RoachAssessment", schema);

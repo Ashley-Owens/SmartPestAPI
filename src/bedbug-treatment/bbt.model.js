@@ -12,6 +12,7 @@ const schema = new Schema(
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
 		city: { type: String, required: true },
+		state: { type: String, required: true },
 		technician: { type: String, required: true },
 		madeContact: { type: Boolean, required: true },
 		contactName: { type: String },
