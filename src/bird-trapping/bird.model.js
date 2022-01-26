@@ -31,7 +31,7 @@ const schema = new Schema(
 
 // Query shortcut for listing entities
 const listSettings = {
-	order: { property: "dateCreated" },
+	order: { property: "dateCreated", descending: true },
 };
 schema.queries("list", listSettings);
 
