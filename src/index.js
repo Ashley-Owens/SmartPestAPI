@@ -13,3 +13,4 @@ router.use("/roach-assessment", require("./roach-assessment/roach.route"));
 router.use("/rodent-exclusion", require("./rodent-exclusion/rodent.route"));
 router.use("/scorpion", require("./scorpion/scorpion.route"));
 router.use("/snake", require("./snake/snake.route"));
+router.use("/termite", require("./termite/termite.route"));
