@@ -2,12 +2,14 @@ const { instances } = require("gstore-node");
 const gstore = instances.get("default");
 const { Schema } = gstore;
 
-// Create the "BedBugInspection" schema
+// Create the "Honeycomb" schema
 const schema = new Schema(
 	{
-		isVisual: { type: Boolean, required: true },
-		isFull: { type: Boolean, required: true },
-		isK9: { type: Boolean, required: true },
+		photos: { type: Array, required: true },
+		level: { type: String, required: true },
+		location: { type: String, required: true },
+		boomLiftRequired: { type: Boolean, required: true },
+		boomLiftHeight: { type: Number },
 		reason: { type: String },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
@@ -35,5 +37,5 @@ const listSettings = {
 };
 schema.queries("list", listSettings);
 
-// Generates "BedBugInspection" entity kind in Datastore
-module.exports = gstore.model("BedBugInspection", schema);
+// Generates "Honeycomb" entity kind in Datastore
+module.exports = gstore.model("Honeycomb", schema);

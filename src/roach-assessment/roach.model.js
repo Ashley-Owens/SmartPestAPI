@@ -5,8 +5,8 @@ const { Schema } = gstore;
 // Creates the "Roach Assessment" schema
 const schema = new Schema(
 	{
-		numBuilding: { type: Number, required: true },
-		numUnit: { type: Number, required: true },
+		numBuildings: { type: Number, required: true },
+		numUnits: { type: Number, required: true },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
@@ -29,7 +29,7 @@ const schema = new Schema(
 
 // Query shortcut for listing entities
 const listSettings = {
-	order: { property: "dateCreated" },
+	order: { property: "dateCreated", descending: true },
 };
 schema.queries("list", listSettings);
 

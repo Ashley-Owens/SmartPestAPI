@@ -2,13 +2,11 @@ const { instances } = require("gstore-node");
 const gstore = instances.get("default");
 const { Schema } = gstore;
 
-// Create the "BedBugInspection" schema
+// Create the "Dewebbing" schema
 const schema = new Schema(
 	{
-		isVisual: { type: Boolean, required: true },
-		isFull: { type: Boolean, required: true },
-		isK9: { type: Boolean, required: true },
-		reason: { type: String },
+		photos: { type: Array, required: true },
+		sprayHours: { type: Number, required: true },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
@@ -35,5 +33,5 @@ const listSettings = {
 };
 schema.queries("list", listSettings);
 
-// Generates "BedBugInspection" entity kind in Datastore
-module.exports = gstore.model("BedBugInspection", schema);
+// Generates "Dewebbing" entity kind in Datastore
+module.exports = gstore.model("Dewebbing", schema);

@@ -2,13 +2,13 @@ const { instances } = require("gstore-node");
 const gstore = instances.get("default");
 const { Schema } = gstore;
 
-// Create the "BedBugInspection" schema
+// Create the "BirdTrapping" schema
 const schema = new Schema(
 	{
-		isVisual: { type: Boolean, required: true },
-		isFull: { type: Boolean, required: true },
-		isK9: { type: Boolean, required: true },
-		reason: { type: String },
+		numTraps: { type: Number, required: true },
+		numBuildings: { type: Number, required: true },
+		numUnits: { type: Number, required: true },
+		observations: { type: String, required: true },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
@@ -35,5 +35,5 @@ const listSettings = {
 };
 schema.queries("list", listSettings);
 
-// Generates "BedBugInspection" entity kind in Datastore
-module.exports = gstore.model("BedBugInspection", schema);
+// Generates "BirdTrapping" entity kind in Datastore
+module.exports = gstore.model("BirdTrapping", schema);
