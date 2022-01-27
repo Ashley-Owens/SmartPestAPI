@@ -11,4 +11,5 @@ router.use("/interior-rodent", require("./interior-rodent/int-rodent.route"));
 router.use("/mosquito", require("./mosquito/mosquito.route"));
 router.use("/roach-assessment", require("./roach-assessment/roach.route"));
 router.use("/rodent-exclusion", require("./rodent-exclusion/rodent.route"));
+router.use("/scorpion", require("./scorpion/scorpion.route"));
 router.use("/snake", require("./snake/snake.route"));
