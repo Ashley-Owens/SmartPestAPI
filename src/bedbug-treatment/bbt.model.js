@@ -5,9 +5,10 @@ const { Schema } = gstore;
 // Create the "BedBugTreatment" schema
 const schema = new Schema(
 	{
-		isRegular: { type: Boolean, required: true },
 		isExtreme: { type: Boolean, required: true },
+		reason: { type: String },
 		photos: { type: Array },
+		status: { type: String, default: "New" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },

@@ -5,8 +5,9 @@ const { Schema } = gstore;
 // Creates the "Roach Assessment" schema
 const schema = new Schema(
 	{
-		numBuildings: { type: Number, required: true },
-		numUnits: { type: Number, required: true },
+		buildingNums: { type: Array, required: true },
+		unitNums: { type: Array, required: true },
+		status: { type: String, default: "New" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },

@@ -5,10 +5,9 @@ const { Schema } = gstore;
 // Create the "BedBugInspection" schema
 const schema = new Schema(
 	{
-		isVisual: { type: Boolean, required: true },
-		isFull: { type: Boolean, required: true },
-		isK9: { type: Boolean, required: true },
+		inspectionType: { type: String, required: true },
 		reason: { type: String },
+		status: { type: String, default: "New" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
