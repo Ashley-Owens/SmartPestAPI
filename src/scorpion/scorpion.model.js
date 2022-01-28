@@ -2,11 +2,12 @@ const { instances } = require("gstore-node");
 const gstore = instances.get("default");
 const { Schema } = gstore;
 
-// Create the "BedBugInspection" schema
+// Create the "Scorpion" schema
 const schema = new Schema(
 	{
-		inspectionType: { type: String, required: true },
-		reason: { type: String },
+		buildingNums: { type: Array, required: true },
+		photos: { type: Array, required: true },
+		propertyPercentage: { type: Number },
 		status: { type: String, default: "New" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
@@ -34,5 +35,5 @@ const listSettings = {
 };
 schema.queries("list", listSettings);
 
-// Generates "BedBugInspection" entity kind in Datastore
-module.exports = gstore.model("BedBugInspection", schema);
+// Generates "Scorpion" entity kind in Datastore
+module.exports = gstore.model("Scorpion", schema);

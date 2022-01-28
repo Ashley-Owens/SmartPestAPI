@@ -5,14 +5,14 @@ const { Schema } = gstore;
 // Create the "BirdExclusion" schema
 const schema = new Schema(
 	{
-		ladderRequired: { type: Boolean, required: true },
-		boomLiftRequired: { type: Boolean, required: true },
+		equipment: { type: String, required: true },
 		spikeLength: { type: Number, required: true },
 		nettingLength: { type: Number, required: true },
 		nettingWidth: { type: Number, required: true },
 		tensionLineLength: { type: Number, required: true },
 		boomLiftHeight: { type: Number },
 		photos: { type: Array, required: true },
+		status: { type: String, default: "New" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },

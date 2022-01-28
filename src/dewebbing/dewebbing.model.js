@@ -7,6 +7,7 @@ const schema = new Schema(
 	{
 		photos: { type: Array, required: true },
 		sprayHours: { type: Number, required: true },
+		status: { type: String, default: "New" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
