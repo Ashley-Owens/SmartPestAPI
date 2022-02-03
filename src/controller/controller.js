@@ -23,8 +23,6 @@ const getEntity = async (req, res, Model) => {
 /* Creates a new entity for the given model */
 const createEntity = async (req, res, Model) => {
 	if (req.get("content-type") !== "application/json") {
-		console.log(req.header);
-		console.log(req.body);
 		res.status(415).send({
 			Error: "Server only accepts application/json data",
 		});
@@ -42,8 +40,6 @@ const createEntity = async (req, res, Model) => {
 /* Updates or replaces data for specified entity model ID */
 const updateEntity = async (req, res, Model) => {
 	if (req.get("content-type") !== "application/json") {
-		console.log(req.header);
-		console.log(req.body);
 		res.status(415).send({
 			Error: "Server only accepts application/json data",
 		});
