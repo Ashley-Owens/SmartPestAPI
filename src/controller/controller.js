@@ -25,16 +25,16 @@ const getEntity = async (req, res, Model) => {
 /* Creates a new entity for the given model */
 const createEntity = async (req, res, Model) => {
 	if (req.get("content-type") !== "application/json") {
-		res.status(406).send({
+		console.log(req.header);
+		console.log(req.body);
+		res.status(415).send({
 			Error: "Server only accepts application/json data",
 		});
 		return;
 	}
 	try {
 		const data = Model.sanitize(req.body);
-		console.log("before save");
 		const entity = await new Model(data).save();
-		console.log("after save");
 		res.status(201).json(entity.plain());
 	} catch (err) {
 		res.status(400).json(err);
@@ -44,7 +44,9 @@ const createEntity = async (req, res, Model) => {
 /* Updates or replaces data for specified entity model ID */
 const updateEntity = async (req, res, Model) => {
 	if (req.get("content-type") !== "application/json") {
-		res.status(406).send({
+		console.log(req.header);
+		console.log(req.body);
+		res.status(415).send({
 			Error: "Server only accepts application/json data",
 		});
 		return;
