@@ -2,11 +2,11 @@ const PORT = process.env.PORT || 8080;
 const app = require("express")();
 const db = require("./src/config/database");
 
-// Initialize routes
+// Initializes routes
 app.use("/", require("./src/index"));
 app.set("trust proxy", true);
 
-// Error handlers: catches 404 and forward to error handler
+// Catches 404 and forwards to error handlers
 app.use(function (req, res, next) {
 	const err = new Error("Not Found");
 	err.status = 404;
@@ -29,6 +29,8 @@ app.use(function (err, req, res, next) {
 	res.status(err.status || 500);
 	res.json({
 		message: err.message,
+		// Comment this out when ready for prod
+		error: err,
 	});
 });
 
