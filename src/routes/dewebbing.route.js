@@ -1,6 +1,6 @@
 const express = require("express");
 const Controller = require("../controller/controller");
-const Model = require("./birdex.model");
+const Model = require("../models/dewebbing.model");
 
 // Initializes router
 const router = express.Router();

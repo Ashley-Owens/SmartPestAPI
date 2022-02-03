@@ -1,6 +1,6 @@
 const express = require("express");
 const Controller = require("../controller/controller");
-const Model = require("./scorpion.model");
+const Model = require("../models/bird-exclusion.model");
 
 // Initializes router
 const router = express.Router();

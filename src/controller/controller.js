@@ -1,10 +1,8 @@
 /* Returns all entities for the given model */
 const getAllEntities = async (req, res, Model) => {
 	const pageCursor = req.query.cursor;
-	console.log(Model);
 	try {
 		const { entities } = await Model.list({ start: pageCursor });
-		console.log(entities);
 		return res.status(200).json(entities);
 	} catch (err) {
 		return res.status(400).json(err);
