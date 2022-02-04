@@ -1,6 +1,6 @@
 const express = require("express");
 const Controller = require("../controller/controller");
-const Model = require("./dewebbing.model");
+const Model = require("../models/roach.model");
 
 // Initializes router
 const router = express.Router();
