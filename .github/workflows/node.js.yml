@@ -29,4 +29,4 @@ jobs:
     - name: Install newman
     - run: npm install -g newman
     - name: Run Postman Testing Suite
-    - run: npm run integration-tests
+    - run: newman run tests/api.postman_collection.json -e tests/api.postman_environment.json
