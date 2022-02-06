@@ -2,6 +2,15 @@ const PORT = process.env.PORT || 8080;
 const app = require("express")();
 const db = require("./src/config/database");
 
+// ** FIX: Enables CORS globally **
+app.use(function (req, res, next) {
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT");
+	res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+	res.setHeader("Access-Control-Allow-Credentials", true);
+	next();
+});
+
 // Initializes routes
 app.use("/", require("./src/index"));
 app.set("trust proxy", true);
