@@ -9,6 +9,7 @@ const schema = new Schema(
 		photos: { type: Array, required: true },
 		propertyPercentage: { type: Number },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "Scorpion" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },

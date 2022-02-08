@@ -14,6 +14,7 @@ const schema = new Schema(
 		trenchingDistance: { type: Number, required: true },
 		isDrywood: { type: Boolean, required: true },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "Termite" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },

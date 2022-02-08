@@ -8,6 +8,7 @@ router.use("/dewebbing", require("./routes/dewebbing.route"));
 router.use("/exterior-rodent", require("./routes/exterior-rodent.route"));
 router.use("/honeycomb", require("./routes/honeycomb.route"));
 router.use("/interior-rodent", require("./routes/interior-rodent.route"));
+router.use("/leads", require("./routes/leads.route"));
 router.use("/mosquito", require("./routes/mosquito.route"));
 router.use("/roach-assessment", require("./routes/roach.route"));
 router.use("/rodent-exclusion", require("./routes/rodent-exclusion.route"));

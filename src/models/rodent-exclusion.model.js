@@ -11,6 +11,7 @@ const schema = new Schema(
 		numMeterBoxes: { type: Number, required: true },
 		numEntryPoints: { type: Number, required: true },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "RodentExclusion" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },

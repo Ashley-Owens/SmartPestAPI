@@ -11,6 +11,7 @@ const schema = new Schema(
 		boomLiftHeight: { type: Number },
 		reason: { type: String },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "Honeycomb" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },

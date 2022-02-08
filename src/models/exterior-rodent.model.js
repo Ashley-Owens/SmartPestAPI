@@ -11,6 +11,7 @@ const schema = new Schema(
 		buildingNums: { type: Array, required: true },
 		observations: { type: String, required: true },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "ExteriorRodent" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },

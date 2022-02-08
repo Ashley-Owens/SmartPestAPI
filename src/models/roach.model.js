@@ -8,6 +8,7 @@ const schema = new Schema(
 		buildingNums: { type: Array, required: true },
 		unitNums: { type: Array, required: true },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "RoachAssessment" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },

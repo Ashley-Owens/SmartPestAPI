@@ -8,6 +8,7 @@ const schema = new Schema(
 		inspectionType: { type: String, required: true },
 		reason: { type: String },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "BedBugInspection" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },

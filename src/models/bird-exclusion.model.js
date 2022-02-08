@@ -13,6 +13,7 @@ const schema = new Schema(
 		boomLiftHeight: { type: Number },
 		photos: { type: Array, required: true },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "BirdExclusion" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
