@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/app.js",
     "integration-tests": "npm run integration-tests-prod",
-    "integration-tests-prod": "newman run tests/api.postman_collection.json -e tests/api.postman_environment.json"
+    "integration-tests-prod": "newman run tests/postman_collection.json -e tests/postman_environment.json"
   },
   "repository": {
     "type": "git",
