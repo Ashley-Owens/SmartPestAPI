@@ -1,17 +1,6 @@
 const Model = require("../models/lead.model");
 
-/* Returns all entities for the given model */
-// const getAllEntities = async (req, res, Model) => {
-// 	const pageCursor = req.query.cursor;
-// 	try {
-// 		const { entities } = await Model.list({ start: pageCursor });
-// 		return res.status(200).json(entities);
-// 	} catch (err) {
-// 		return res.status(400).json(err);
-// 	}
-// };
-
-/* Retrieves a single entity by ID for given model */
+/* Retrieves a single entity by ID */
 const getEntity = async (req, res) => {
 	try {
 		const id = parseInt(req.params.id, 10);
@@ -22,7 +11,7 @@ const getEntity = async (req, res) => {
 	}
 };
 
-/* Creates a new entity for the given model */
+/* Creates a new entity */
 const createEntity = async (req, res) => {
 	if (req.get("content-type") !== "application/json") {
 		res.status(415).send({
@@ -39,7 +28,7 @@ const createEntity = async (req, res) => {
 	}
 };
 
-/* Updates or replaces data for specified entity model ID */
+/* Updates or replaces data for entity ID */
 const updateEntity = async (req, res) => {
 	if (req.get("content-type") !== "application/json") {
 		res.status(415).send({
@@ -48,7 +37,6 @@ const updateEntity = async (req, res) => {
 		return;
 	}
 	try {
-		req.body.dateModified = new Date();
 		const id = parseInt(req.params.id, 10);
 		const data = Model.sanitize(req.body);
 		const entity = await Model.update(id, data);
