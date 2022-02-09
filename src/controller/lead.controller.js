@@ -28,7 +28,7 @@ const createEntity = async (req, res) => {
 	}
 };
 
-/* Updates or replaces data for entity ID */
+/* Updates or replaces data for given entity ID */
 const updateEntity = async (req, res) => {
 	if (req.get("content-type") !== "application/json") {
 		res.status(415).send({

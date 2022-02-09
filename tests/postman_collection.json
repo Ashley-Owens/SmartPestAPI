@@ -6,58 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"bbinspect_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"Buggy Hotel\");",
-							"    pm.expect(res.inspectionType).to.eq(\"K9\");",
-							"    pm.expect(res.reason).to.eq(\"Health and safety\");",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"    // const self_url = pm.environment.get(\"app_url\") + \"/slips/\" + pm.response.json()[\"id\"];",
-							"    // pm.expect(pm.response.json()[\"self\"]).to.eq(self_url);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"inspectionType\": \"K9\",\n    \"reason\": \"Health and safety\",\n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bedbug-inspection",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-inspection"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Missing Attributes",
 			"event": [
 				{
@@ -77,7 +25,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
+					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -85,19 +33,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{url_2}}/bedbug-inspection",
+					"raw": "{{url_2}}/lead",
 					"host": [
 						"{{url_2}}"
 					],
 					"path": [
-						"bedbug-inspection"
+						"lead"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Create Entity XML input Copy",
+			"name": "XML input",
 			"event": [
 				{
 					"listen": "test",
@@ -126,4857 +74,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url_2}}/bedbug-inspection",
+					"raw": "{{url_2}}/lead",
 					"host": [
 						"{{url_2}}"
 					],
 					"path": [
-						"bedbug-inspection"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bedbug-inspection",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-inspection"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"bbinspect_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bedbug-inspection/{{bbinspect_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-inspection",
-						"{{bbinspect_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bedbug-inspection/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-inspection",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"bbinspect_id1\"));",
-							"    pm.expect(res.propertyName).to.eq(\"Bugatropolis Motel\");",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"status\": \"Open\",\n    \"propertyName\": \"Bugatropolis Motel\",\n    \"isExtreme\": false,\n    \"isRegular\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bedbug-inspection/{{bbinspect_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-inspection",
-						"{{bbinspect_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bedbug-inspection/{{bbinspect_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-inspection",
-						"{{bbinspect_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bedbug-inspection/{{bbinspect_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-inspection",
-						"{{bbinspect_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"bbtreat_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"Buggy Hotel\");",
-							"    pm.expect(res.isExtreme).to.eq(true);",
-							"    pm.expect(res.reason).to.eq(\"move out\");",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"isExtreme\": true,\n    \"reason\": \"move out\",\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bedbug-treatment",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-treatment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Bobby Flay\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bedbug-treatment",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-treatment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"isRegular\": false,\n    \"isExtreme\": true,\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bedbug-treatment",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-treatment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bedbug-treatment",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-treatment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"bbtreat_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bedbug-treatment/{{bbtreat_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-treatment",
-						"{{bbtreat_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bedbug-treatment/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-treatment",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"bbtreat_id1\"));",
-							"    pm.expect(res.propertyName).to.eq(\"Bugatopia Motel\");",
-							"    pm.expect(res.isExtreme).to.eq(false);",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"status\": \"Open\",\n    \"propertyName\": \"Bugatopia Motel\",\n    \"isExtreme\": false\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bedbug-treatment/{{bbtreat_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-treatment",
-						"{{bbtreat_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bedbug-treatment/{{bbtreat_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-treatment",
-						"{{bbtreat_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bedbug-treatment/{{bbtreat_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bedbug-treatment",
-						"{{bbtreat_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"birdex_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"The Bird's Nest\");",
-							"    pm.expect(res.equipment).to.eq(\"Boom Lift\");",
-							"    pm.expect(res.boomLiftHeight).to.eq(100);",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"equipment\": \"Boom Lift\",\n    \"spikeLength\": 5,\n    \"nettingLength\": 130,\n    \"nettingWidth\": 8,\n    \"tensionLineLength\": 12,\n    \"boomLiftHeight\": 100,\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"The Bird's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"bird crap e'rywhere\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-exclusion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-exclusion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"isRegular\": false,\n    \"isExtreme\": true,\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-exclusion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-exclusion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Bird's Nest\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Bobby Flay\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-exclusion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-exclusion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bird-exclusion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-exclusion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"birdex_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bird-exclusion/{{birdex_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-exclusion",
-						"{{birdex_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bird-exclusion/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-exclusion",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"birdex_id1\"));",
-							"    pm.expect(res.propertyName).to.eq(\"Bird Drop\");",
-							"    pm.expect(res.equipment).to.eq(\"Ladder\");",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.boomLiftHeight).to.be.null;",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"Bird Drop\",\n    \"status\": \"Open\",\n    \"equipment\": \"Ladder\",\n    \"boomLiftHeight\": null\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-exclusion/{{birdex_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-exclusion",
-						"{{birdex_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-exclusion/{{birdex_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-exclusion",
-						"{{birdex_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-exclusion/{{birdex_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-exclusion",
-						"{{birdex_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"bird_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"The Bird's Nest\");",
-							"    pm.expect(res.numTraps).to.eq(6);",
-							"    pm.expect(res.buildingNums.length).to.eq(2);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"numTraps\": 6,\n    \"buildingNums\": [\"1022\", \"2060\"],\n    \"observations\": \"it's like an aviary over here\",\n    \"propertyName\": \"The Bird's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"bird crap e'rywhere\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-trapping",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-trapping"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"isRegular\": false,\n    \"isExtreme\": true,\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-trapping",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-trapping"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Bird's Nest\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Bobby Flay\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-trapping",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-trapping"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bird-trapping",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-trapping"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"bird_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bird-trapping/{{bird_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-trapping",
-						"{{bird_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/bird-trapping/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-trapping",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"bird_id1\"));",
-							"    pm.expect(res.propertyName).to.eq(\"Bird Drop\");",
-							"    pm.expect(res.numTraps).to.eq(7);",
-							"    pm.expect(res.buildingNums.length).to.eq(3);",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.city).to.eq(\"Mesa\");",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"Bird Drop\",\n    \"numTraps\": 7,\n    \"buildingNums\": [\"1022\", \"2060\", \"1105\"],\n    \"status\": \"Open\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-trapping/{{bird_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-trapping",
-						"{{bird_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-trapping/{{bird_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-trapping",
-						"{{bird_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/bird-trapping/{{bird_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"bird-trapping",
-						"{{bird_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"deweb_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"Charlotte's Web\");",
-							"    pm.expect(res.sprayHours).to.eq(5);",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"sprayHours\": 5,\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Charlotte's Web\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"S. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/dewebbing",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"dewebbing"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"isRegular\": false,\n    \"isExtreme\": true,\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/dewebbing",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"dewebbing"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"Charlotte's Web\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Bobby Flay\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/dewebbing",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"dewebbing"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/dewebbing",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"dewebbing"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"deweb_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/dewebbing/{{deweb_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"dewebbing",
-						"{{deweb_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/dewebbing/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"dewebbing",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"deweb_id1\"));",
-							"    pm.expect(res.propertyName).to.eq(\"Spy D. Web\");",
-							"    pm.expect(res.sprayHours).to.eq(4);",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"Spy D. Web\",\n    \"sprayHours\": 4,\n    \"status\": \"Open\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/dewebbing/{{deweb_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"dewebbing",
-						"{{deweb_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/dewebbing/{{deweb_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"dewebbing",
-						"{{deweb_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/dewebbing/{{deweb_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"dewebbing",
-						"{{deweb_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"extrodent_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"The Rat's Nest\");",
-							"    pm.expect(res.numStations).to.eq(6);",
-							"    pm.expect(res.buildingNums.length).to.eq(2);",
-							"    pm.expect(res.numPropertyBuildings).to.eq(875);",
-							"    pm.expect(res.cutOut).to.eq(true);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"numStations\": 6,\n    \"cutOut\": true,\n    \"numPropertyBuildings\": 875,\n    \"buildingNums\": [\"1022\", \"2060\"],\n    \"observations\": \"the mouse trap got me\",\n    \"propertyName\": \"The Rat's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"rodent crap e'rywhere\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/exterior-rodent",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"exterior-rodent"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n   \"numStations\": 6,\n    \"cutOut\": true,\n    \"numPropertyBuildings\": 875,\n    \"buildingNums\": [\"1022\", \"2060\"],\n    \"observations\": \"the mouse trap got me\",\n    \"propertyName\": \"The Rat's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"rodent crap e'rywhere\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/exterior-rodent",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"exterior-rodent"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Bird's Nest\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Bobby Flay\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/exterior-rodent",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"exterior-rodent"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/exterior-rodent",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"exterior-rodent"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"extrodent_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/exterior-rodent/{{extrodent_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"exterior-rodent",
-						"{{extrodent_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/exterior-rodent/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"exterior-rodent",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"extrodent_id1\"));",
-							"    pm.expect(res.numStations).to.eq(7);",
-							"    pm.expect(res.buildingNums.length).to.eq(3);",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.cutOut).to.eq(false);",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"numStations\": 7,\n    \"buildingNums\": [\"1022\", \"2060\", \"1105\"],\n    \"cutOut\": false,\n    \"status\": \"Open\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/exterior-rodent/{{extrodent_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"exterior-rodent",
-						"{{extrodent_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/exterior-rodent/{{bird_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"exterior-rodent",
-						"{{bird_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/exterior-rodent/{{bird_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"exterior-rodent",
-						"{{bird_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"honey_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"The Bee's Knees\");",
-							"    pm.expect(res.boomLiftHeight).to.eq(55);",
-							"    pm.expect(res.level).to.eq(\"Boom Lift\");",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"level\": \"Boom Lift\",\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"location\": \"In a tree, next to apartment #2060\",\n    \"reason\": \"ladders scare me\",\n    \"boomLiftHeight\": 55,\n    \"propertyName\": \"The Bee's Knees\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"stingers e'rywhere\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/honeycomb",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"honeycomb"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"The Bee's Knees\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/honeycomb",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"honeycomb"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Bee's Knees\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Honey Galore\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/honeycomb",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"honeycomb"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/honeycomb",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"honeycomb"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"honey_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/honeycomb/{{honey_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"honeycomb",
-						"{{honey_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/honeycomb/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"honeycomb",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"honey_id1\"));",
-							"    pm.expect(res.level).to.eq(\"Below 32'\");",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.boomLiftHeight).to.be.null;",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"level\": \"Below 32'\",\n    \"boomLiftHeight\": null,\n    \"status\": \"Open\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/honeycomb/{{honey_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"honeycomb",
-						"{{honey_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/honeycomb/{{honey_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"honeycomb",
-						"{{honey_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/honeycomb/{{honey_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"honeycomb",
-						"{{honey_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"introdent_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"The Rat's Nest\");",
-							"    pm.expect(res.unitNums.length).to.eq(2);",
-							"    pm.expect(res.cutOut).to.eq(true);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"cutOut\": true,\n    \"unitNums\": [\"1022\", \"2060\"],\n    \"observations\": \"the mouse trap got me\",\n    \"propertyName\": \"The Rat's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"rodent crap e'rywhere\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/interior-rodent",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"interior-rodent"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n   \"numStations\": 6,\n    \"cutOut\": true,\n    \"numPropertyBuildings\": 875,\n    \"buildingNums\": [\"1022\", \"2060\"],\n    \"observations\": \"the mouse trap got me\",\n    \"propertyName\": \"The Rat's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"rodent crap e'rywhere\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/interior-rodent",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"interior-rodent"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Bird's Nest\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Bobby Flay\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/interior-rodent",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"interior-rodent"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/interior-rodent",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"interior-rodent"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"introdent_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/interior-rodent/{{introdent_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"interior-rodent",
-						"{{introdent_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/interior-rodent/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"interior-rodent",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"introdent_id1\"));",
-							"    pm.expect(res.unitNums.length).to.eq(3);",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.cutOut).to.eq(false);",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"unitNums\": [\"1022\", \"2060\", \"1105\"],\n    \"cutOut\": false,\n    \"status\": \"Open\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/interior-rodent/{{introdent_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"interior-rodent",
-						"{{introdent_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/interior-rodent/{{introdent_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"interior-rodent",
-						"{{introdent_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/interior-rodent/{{introdent_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"interior-rodent",
-						"{{introdent_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"mosq_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.status).to.eq(\"New\");",
-							"    pm.expect(res.propertyName).to.eq(\"The Net\");",
-							"    pm.expect(res.state).to.eq(\"AZ\");",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"The Net\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"M. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"E. N. Cephalitis\",\n    \"contactTitle\": \"manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/mosquito",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"mosquito"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"The Net\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/mosquito",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"mosquito"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Net\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"E. N. Cephalitis\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/mosquito",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"mosquito"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/mosquito",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"mosquito"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"mosq_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/mosquito/{{mosq_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"mosquito",
-						"{{mosq_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/mosquito/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"mosquito",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"mosq_id1\"));",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.propertyName).to.eq(\"The Good Place\");",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"notes\": \"Lotta bugs y'all\",\n    \"status\": \"Open\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/mosquito/{{mosq_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"mosquito",
-						"{{mosq_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/mosquito/{{mosq_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"mosquito",
-						"{{mosq_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/mosquito/{{mosq_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"mosquito",
-						"{{mosq_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Roach Assessment",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"roach_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"Roach Hotel\");",
-							"    pm.expect(res.technician).to.eq(\"R. Destroyer\");",
-							"    pm.expect(res.buildingNums.length).to.be.above(0);",
-							"    pm.expect(res.unitNums.length).to.be.above(0);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							" ",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"Roach Hotel\",\n    \"address\": \"789 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"R. Destroyer\",\n    \"madeContact\": false,\n    \"buildingNums\": [\"5\", \"18\"],\n    \"unitNums\": [\"1200\", \"2060\"],\n    \"notes\": \"sugar water everywhere\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/roach-assessment",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"roach-assessment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"Roach Hotel\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Bobby Flay\",\n    \"madeContact\": null,\n    \"numBuildings\": 50,\n    \"numUnits\": 200,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\",\n    \"notes\": \"lots of roaches\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/roach-assessment",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"roach-assessment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "All RoachAssessments",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/roach-assessment",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"roach-assessment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get roach_id1",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"roach_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/roach-assessment/{{roach_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"roach-assessment",
-						"{{roach_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid roach_id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/roach-assessment/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"roach-assessment",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update roach_id1",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"Roach Motel\");",
-							"    pm.expect(res.technician).to.eq(\"Ryan Owens\");",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"Roach Motel\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true,\n    \"numBuildings\": 51,\n    \"numUnits\": 201,\n    \"status\": \"Open\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/roach-assessment/{{roach_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"roach-assessment",
-						"{{roach_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update roach_id1 Bad Input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true,\n    \"numBuilding\": 50,\n    \"numUnit\": 200,\n    \"buildingNums\": 5,\n    \"unitNums\": 1022\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/roach-assessment/{{roach_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"roach-assessment",
-						"{{roach_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/mosquito/{{mosq_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"mosquito",
-						"{{mosq_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"rodentex_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.numPipes).to.eq(20);",
-							"    pm.expect(res.numVents).to.eq(10);",
-							"    pm.expect(res.numMeterBoxes).to.eq(5);",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"numPipes\": 20,\n    \"numVents\": 10,\n    \"numMeterBoxes\": 5,\n    \"numEntryPoints\": 7,\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"The Rat's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"R. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"rat dung e'rywhere\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/rodent-exclusion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"rodent-exclusion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/rodent-exclusion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"rodent-exclusion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Rat's Nest\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Bobby Flay\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/rodent-exclusion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"rodent-exclusion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/rodent-exclusion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"rodent-exclusion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"rodentex_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/rodent-exclusion/{{rodentex_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"rodent-exclusion",
-						"{{rodentex_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/rodent-exclusion/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"rodent-exclusion",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"rodentex_id1\"));",
-							"    pm.expect(res.propertyName).to.eq(\"The Rat's Nest\");",
-							"    pm.expect(res.numPipes).to.eq(19);",
-							"    pm.expect(res.numVents).to.eq(9);",
-							"    pm.expect(res.numMeterBoxes).to.eq(4);",
-							"    pm.expect(res.numEntryPoints).to.eq(6);",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"numPipes\": 19,\n    \"numVents\": 9,\n    \"numMeterBoxes\": 4,\n    \"numEntryPoints\": 6,\n    \"status\": \"Open\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/rodent-exclusion/{{rodentex_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"rodent-exclusion",
-						"{{rodentex_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/rodent-exclusion/{{rodentex_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"rodent-exclusion",
-						"{{rodentex_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/rodent-exclusion/{{rodentex_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"rodent-exclusion",
-						"{{rodentex_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"scorpion_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"Stingers\");",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.buildingNums.length).to.eq(2);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"buildingNums\": [\"5\", \"6\"],\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Stingers\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"S. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/scorpion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"scorpion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"buildingNums\": [\"5\", \"6\"],\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Stingers\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"S. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/scorpion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"scorpion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"Stingers\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Bobby Flay\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/scorpion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"scorpion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/scorpion",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"scorpion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"scorpion_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/scorpion/{{scorpion_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"scorpion",
-						"{{scorpion_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/scorpion/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"scorpion",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"scorpion_id1\"));",
-							"    pm.expect(res.propertyName).to.eq(\"Stingers\");",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.buildingNums.length).to.eq(3);",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"status\": \"Open\",\n    \"buildingNums\": [\"5\", \"6\", \"8\"],\n    \"propertyPercentage\": 100\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/scorpion/{{scorpion_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"scorpion",
-						"{{scorpion_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"buildingNums\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/scorpion/{{scorpion_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"scorpion",
-						"{{scorpion_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/scorpion/{{scorpion_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"scorpion",
-						"{{scorpion_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"snake_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.propertyName).to.eq(\"The Net\");",
-							"    pm.expect(res.state).to.eq(\"AZ\");",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"The Net\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"S. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Slytherin\",\n    \"contactTitle\": \"manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/snake",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"snake"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"The Net\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/snake",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"snake"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Net\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Slytherin\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/snake",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"snake"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/snake",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"snake"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"snake_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/snake/{{snake_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"snake",
-						"{{snake_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/snake/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"snake",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"snake_id1\"));",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.propertyName).to.eq(\"The Good Place\");",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"notes\": \"Lotta snakes y'all\",\n    \"status\": \"Open\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/snake/{{snake_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"snake",
-						"{{snake_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/snake/{{snake_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"snake",
-						"{{snake_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/snake/{{snake_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"snake",
-						"{{snake_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"termite_id1\", pm.response.json().id);",
-							"",
-							"pm.test(\"201 status code\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.numTubes).to.eq(20);",
-							"    pm.expect(res.tubeDistance).to.eq(10);",
-							"    pm.expect(res.drillingDistance).to.eq(5);",
-							"    pm.expect(res.trenchingDistance).to.eq(7);",
-							"    pm.expect(res.isDrywood).to.eq(true);",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.dateModified).to.eq(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"buildingNums\": [\"5\", \"6\"],\n    \"numTubes\": 20,\n    \"tubeDistance\": 10,\n    \"drillingDistance\": 5,\n    \"trenchingDistance\": 7,\n    \"isDrywood\": true,\n    \"propertyName\": \"The Good Place\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"T. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"wood shavin's e'rywhere\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/termite",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"termite"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"buildingNums\": [\"5\", \"6\"],\n    \"numTubes\": 20,\n    \"tubeDistance\": 10,\n    \"drillingDistance\": 5,\n    \"trenchingDistance\": 7,\n    \"isDrywood\": true,\n    \"propertyName\": \"The Good Place\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"T. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"wood shavin's e'rywhere\"\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/termite",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"termite"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Missing Attributes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"address\": \"123 W. Ash St. Gilbert, AZ 85233\",\n    \"technician\": \"Bobby Flay\",\n    \"madeContact\": null,\n    \"contactName\": \"Fly O. Wall\",\n    \"contactTitle\": \"Manager\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/termite",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"termite"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/termite",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"termite"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Entity by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"termite_id1\"));",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/termite/{{termite_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"termite",
-						"{{termite_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get invalid entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url_2}}/termite/123",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"termite",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"200 status code\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"content is valid\", function () {",
-							"    const res = pm.response.json();",
-							"    pm.expect(res.id).to.eq(pm.environment.get(\"termite_id1\"));",
-							"    pm.expect(res.propertyName).to.eq(\"The Good Place\");",
-							"    pm.expect(res.numTubes).to.eq(21);",
-							"    pm.expect(res.tubeDistance).to.eq(11);",
-							"    pm.expect(res.drillingDistance).to.eq(6);",
-							"    pm.expect(res.trenchingDistance).to.eq(8);",
-							"    pm.expect(res.isDrywood).to.eq(false);",
-							"    pm.expect(res.photos.length).to.be.above(0);",
-							"    pm.expect(res.status).to.eq(\"Open\");",
-							"    pm.expect(res.dateModified).to.not.be.null;",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"buildingNums\": [\"5\", \"6\", \"8\"],\n    \"numTubes\": 21,\n    \"tubeDistance\": 11,\n    \"drillingDistance\": 6,\n    \"trenchingDistance\": 8,\n    \"isDrywood\": false,\n    \"status\": \"Open\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/termite/{{termite_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"termite",
-						"{{termite_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: bad input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"400 status code\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/termite/{{termite_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"termite",
-						"{{termite_id1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update entity: XML input",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"415 status code\", function () {",
-							"    pm.response.to.have.status(415);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url_2}}/termite/{{termite_id1}}",
-					"host": [
-						"{{url_2}}"
-					],
-					"path": [
-						"termite",
-						"{{termite_id1}}"
+						"lead"
 					]
 				}
 			},
@@ -5001,19 +104,145 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url_2}}/roach",
+					"raw": "{{url_2}}/roach-assessment",
 					"host": [
 						"{{url_2}}"
 					],
 					"path": [
-						"roach"
+						"roach-assessment"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get All Leads in DS",
+			"name": "Invalid Entity ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/lead/123",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid Entity ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"Open\",\n    \"propertyName\": \"Bugatropolis Motel\",\n    \"inspectionType\": \"Visual\",\n    \"reason\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/123",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bed Bug Inspection Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"bbinspect_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.service).to.eq(\"Bedbug Inspection\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bedbug\");",
+							"    pm.expect(res.propertyName).to.eq(\"Buggy Hotel\");",
+							"    pm.expect(res.inspectionType).to.eq(\"K9\");",
+							"    pm.expect(res.reason).to.eq(\"Health and safety\");",
+							"    // const self_url = pm.environment.get(\"app_url\") + \"/slips/\" + pm.response.json()[\"id\"];",
+							"    // pm.expect(pm.response.json()[\"self\"]).to.eq(self_url);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"inspectionType\": \"K9\",\n    \"reason\": \"Health and safety\",\n    \"service\": \"Bedbug Inspection\",\n    \"targetPest\": \"Bedbug\", \n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bed Bug Inspection Entity by ID",
 			"event": [
 				{
 					"listen": "test",
@@ -5021,6 +250,16 @@
 						"exec": [
 							"pm.test(\"200 status code\", function () {",
 							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"bbinspect_id1\"));",
+							"    pm.expect(res.service).to.eq(\"Bedbug Inspection\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bedbug\");",
+							"    pm.expect(res.propertyName).to.eq(\"Buggy Hotel\");",
+							"    pm.expect(res.inspectionType).to.eq(\"K9\");",
+							"    pm.expect(res.reason).to.eq(\"Health and safety\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -5031,19 +270,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url_2}}/leads",
+					"raw": "{{url_2}}/lead/{{bbinspect_id1}}",
 					"host": [
 						"{{url_2}}"
 					],
 					"path": [
-						"leads"
+						"lead",
+						"{{bbinspect_id1}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get All New Leads",
+			"name": "Bed Bug Inspection Entity by ID",
 			"event": [
 				{
 					"listen": "test",
@@ -5051,6 +291,202 @@
 						"exec": [
 							"pm.test(\"200 status code\", function () {",
 							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"bbinspect_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"Bugatropolis Motel\");",
+							"    pm.expect(res.status).to.eq(\"Open\");",
+							"    pm.expect(res.service).to.eq(\"Bedbug Inspection\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bedbug\");",
+							"    pm.expect(res.inspectionType).to.eq(\"Visual\");",
+							"    pm.expect(res.reason).to.eq(null);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"Open\",\n    \"propertyName\": \"Bugatropolis Motel\",\n    \"inspectionType\": \"Visual\",\n    \"reason\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{bbinspect_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{bbinspect_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propertyName\": 123,\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{bbinspect_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{bbinspect_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XML input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"415 status code\", function () {",
+							"    pm.response.to.have.status(415);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true\n}",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{bbinspect_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{bbinspect_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bed Bug Treatment Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"bbtreat_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"Buggy Hotel\");",
+							"    pm.expect(res.service).to.eq(\"Bedbug Treatment\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bedbug\");",
+							"    pm.expect(res.isExtreme).to.eq(true);",
+							"    pm.expect(res.reason).to.eq(\"move out\");",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"isExtreme\": true,\n    \"reason\": \"move out\",\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"service\": \"Bedbug Treatment\",\n    \"targetPest\": \"Bedbug\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bed Bug Treatment Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"bbtreat_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"Buggy Hotel\");",
+							"    pm.expect(res.service).to.eq(\"Bedbug Treatment\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bedbug\");",
+							"    pm.expect(res.isExtreme).to.eq(true);",
+							"    pm.expect(res.reason).to.eq(\"move out\");",
+							"    pm.expect(res.photos.length).to.be.above(0);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -5061,20 +497,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url_2}}/leads/new",
+					"raw": "{{url_2}}/lead/{{bbtreat_id1}}",
 					"host": [
 						"{{url_2}}"
 					],
 					"path": [
-						"leads",
-						"new"
+						"lead",
+						"{{bbtreat_id1}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get All Open Leads",
+			"name": "Bed Bug Treatment Entity by ID",
 			"event": [
 				{
 					"listen": "test",
@@ -5082,6 +518,118 @@
 						"exec": [
 							"pm.test(\"200 status code\", function () {",
 							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"bbtreat_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"Bugatopia Motel\");",
+							"    pm.expect(res.isExtreme).to.eq(false);",
+							"    pm.expect(res.reason).to.be.null;",
+							"    pm.expect(res.photos).to.be.null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propertyName\": \"Bugatopia Motel\",\n    \"isExtreme\": false,\n    \"reason\": null,\n    \"photos\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{bbtreat_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{bbtreat_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bird Exclusion Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"birdex_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"The Bird's Nest\");",
+							"    pm.expect(res.equipment).to.eq(\"Boom Lift\");",
+							"    pm.expect(res.boomLiftHeight).to.eq(100);",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Bird Exclusion\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bird\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"equipment\": \"Boom Lift\",\n    \"spikeLength\": 5,\n    \"nettingLength\": 130,\n    \"nettingWidth\": 8,\n    \"tensionLineLength\": 12,\n    \"boomLiftHeight\": 100,\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"service\": \"Bird Exclusion\",\n    \"targetPest\": \"Bird\", \n    \"propertyName\": \"The Bird's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"bird crap e'rywhere\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bird Exclusion Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"birdex_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"The Bird's Nest\");",
+							"    pm.expect(res.equipment).to.eq(\"Boom Lift\");",
+							"    pm.expect(res.boomLiftHeight).to.eq(100);",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Bird Exclusion\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bird\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -5092,20 +640,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url_2}}/leads/open",
+					"raw": "{{url_2}}/lead/{{birdex_id1}}",
 					"host": [
 						"{{url_2}}"
 					],
 					"path": [
-						"leads",
-						"open"
+						"lead",
+						"{{birdex_id1}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get All Won Leads",
+			"name": "Bird Exclusion Entity by ID",
 			"event": [
 				{
 					"listen": "test",
@@ -5113,6 +661,118 @@
 						"exec": [
 							"pm.test(\"200 status code\", function () {",
 							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"birdex_id1\"));",
+							"    pm.expect(res.service).to.eq(\"Bird Exclusion\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bird\");",
+							"    pm.expect(res.propertyName).to.eq(\"Bird Drop\");",
+							"    pm.expect(res.equipment).to.eq(\"Ladder\");",
+							"    pm.expect(res.status).to.eq(\"Open\");",
+							"    pm.expect(res.boomLiftHeight).to.be.null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propertyName\": \"Bird Drop\",\n    \"status\": \"Open\",\n    \"equipment\": \"Ladder\",\n    \"boomLiftHeight\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{birdex_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{birdex_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bird Trapping Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"bird_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"The Bird's Nest\");",
+							"    pm.expect(res.numTraps).to.eq(6);",
+							"    pm.expect(res.buildingNums.length).to.eq(2);",
+							"    pm.expect(res.service).to.eq(\"Bird Trapping\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bird\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numTraps\": 6,\n    \"buildingNums\": [\"1022\", \"2060\"],\n    \"observations\": \"it's like an aviary over here\",\n    \"service\": \"Bird Trapping\",\n    \"targetPest\": \"Bird\",\n    \"propertyName\": \"The Bird's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"bird crap e'rywhere\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bird Trapping Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"bird_id1\"));",
+							"    pm.expect(res.numTraps).to.eq(6);",
+							"    pm.expect(res.buildingNums.length).to.eq(2);",
+							"    pm.expect(res.propertyName).to.eq(\"The Bird's Nest\");",
+							"    pm.expect(res.service).to.eq(\"Bird Trapping\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bird\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -5123,20 +783,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url_2}}/leads/won",
+					"raw": "{{url_2}}/lead/{{bird_id1}}",
 					"host": [
 						"{{url_2}}"
 					],
 					"path": [
-						"leads",
-						"won"
+						"lead",
+						"{{bird_id1}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get All Lost Leads",
+			"name": "Bird Trapping Entity by ID",
 			"event": [
 				{
 					"listen": "test",
@@ -5144,6 +804,119 @@
 						"exec": [
 							"pm.test(\"200 status code\", function () {",
 							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"bird_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"Bird Drop\");",
+							"    pm.expect(res.numTraps).to.eq(7);",
+							"    pm.expect(res.buildingNums.length).to.eq(3);",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"    pm.expect(res.city).to.eq(\"Mesa\");",
+							"    pm.expect(res.service).to.eq(\"Bird Trapping\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bird\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propertyName\": \"Bird Drop\",\n    \"numTraps\": 7,\n    \"buildingNums\": [\"1022\", \"2060\", \"1105\"],\n    \"status\": \"New\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{bird_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{bird_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dewebbing Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"deweb_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"Charlotte's Web\");",
+							"    pm.expect(res.sprayHours).to.eq(5);",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Dewebbing\");",
+							"    pm.expect(res.targetPest).to.eq(\"Spider\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sprayHours\": 5,\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"service\": \"Dewebbing\",\n    \"targetPest\": \"Spider\",\n    \"propertyName\": \"Charlotte's Web\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"S. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dewebbing Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"deweb_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"Charlotte's Web\");",
+							"    pm.expect(res.sprayHours).to.eq(5);",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Dewebbing\");",
+							"    pm.expect(res.targetPest).to.eq(\"Spider\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -5154,20 +927,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url_2}}/leads/lost",
+					"raw": "{{url_2}}/lead/{{deweb_id1}}",
 					"host": [
 						"{{url_2}}"
 					],
 					"path": [
-						"leads",
-						"lost"
+						"lead",
+						"{{deweb_id1}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get All Sent Leads",
+			"name": "Dewebbing Entity by ID",
 			"event": [
 				{
 					"listen": "test",
@@ -5175,6 +948,122 @@
 						"exec": [
 							"pm.test(\"200 status code\", function () {",
 							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"deweb_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"Spy D. Web\");",
+							"    pm.expect(res.sprayHours).to.eq(4);",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.status).to.eq(\"Won\");",
+							"    pm.expect(res.service).to.eq(\"Dewebbing\");",
+							"    pm.expect(res.targetPest).to.eq(\"Spider\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propertyName\": \"Spy D. Web\",\n    \"sprayHours\": 4,\n    \"status\": \"Won\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{deweb_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{deweb_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exterior Rodent Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"extrodent_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"The Rat's Nest\");",
+							"    pm.expect(res.numStations).to.eq(6);",
+							"    pm.expect(res.buildingNums.length).to.eq(2);",
+							"    pm.expect(res.numPropertyBuildings).to.eq(875);",
+							"    pm.expect(res.cutOut).to.eq(true);",
+							"    pm.expect(res.service).to.eq(\"Exterior Rodent\");",
+							"    pm.expect(res.targetPest).to.eq(\"Rodent\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numStations\": 6,\n    \"cutOut\": true,\n    \"numPropertyBuildings\": 875,\n    \"buildingNums\": [\"1022\", \"2060\"],\n    \"observations\": \"the mouse trap got me\",\n    \"service\": \"Exterior Rodent\",\n    \"targetPest\": \"Rodent\",\n    \"propertyName\": \"The Rat's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"rodent crap e'rywhere\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exterior Rodent Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"extrodent_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"The Rat's Nest\");",
+							"    pm.expect(res.numStations).to.eq(6);",
+							"    pm.expect(res.buildingNums.length).to.eq(2);",
+							"    pm.expect(res.numPropertyBuildings).to.eq(875);",
+							"    pm.expect(res.cutOut).to.eq(true);",
+							"    pm.expect(res.service).to.eq(\"Exterior Rodent\");",
+							"    pm.expect(res.targetPest).to.eq(\"Rodent\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -5185,13 +1074,1242 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url_2}}/leads/sent",
+					"raw": "{{url_2}}/lead/{{extrodent_id1}}",
 					"host": [
 						"{{url_2}}"
 					],
 					"path": [
-						"leads",
-						"sent"
+						"lead",
+						"{{extrodent_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exterior Rodent Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"extrodent_id1\"));",
+							"    pm.expect(res.numStations).to.eq(7);",
+							"    pm.expect(res.buildingNums.length).to.eq(3);",
+							"    pm.expect(res.status).to.eq(\"Open\");",
+							"    pm.expect(res.cutOut).to.eq(false);",
+							"    pm.expect(res.service).to.eq(\"Exterior Rodent\");",
+							"    pm.expect(res.targetPest).to.eq(\"Rodent\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numStations\": 7,\n    \"buildingNums\": [\"1022\", \"2060\", \"1105\"],\n    \"cutOut\": false,\n    \"status\": \"Open\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{extrodent_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{extrodent_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Honeycomb Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"honey_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"The Bee's Knees\");",
+							"    pm.expect(res.boomLiftHeight).to.eq(55);",
+							"    pm.expect(res.level).to.eq(\"Boom Lift\");",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Honeycomb Removal\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bee & Wasp\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"level\": \"Boom Lift\",\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"location\": \"In a tree, next to apartment #2060\",\n    \"reason\": \"ladders scare me\",\n    \"boomLiftHeight\": 55,\n    \"service\": \"Honeycomb Removal\",\n    \"targetPest\": \"Bee & Wasp\",\n    \"propertyName\": \"The Bee's Knees\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"stingers e'rywhere\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Honeycomb Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"honey_id1\"));",
+							"     pm.expect(res.propertyName).to.eq(\"The Bee's Knees\");",
+							"    pm.expect(res.boomLiftHeight).to.eq(55);",
+							"    pm.expect(res.level).to.eq(\"Boom Lift\");",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Honeycomb Removal\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bee & Wasp\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/lead/{{honey_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{honey_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Honeycomb Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"honey_id1\"));",
+							"    pm.expect(res.level).to.eq(\"Below 32'\");",
+							"    pm.expect(res.status).to.eq(\"Sent\");",
+							"    pm.expect(res.boomLiftHeight).to.be.null;",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Honeycomb Removal\");",
+							"    pm.expect(res.targetPest).to.eq(\"Bee & Wasp\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"level\": \"Below 32'\",\n    \"boomLiftHeight\": null,\n    \"status\": \"Sent\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{honey_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{honey_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Interior Rodent Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"introdent_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"The Rat's Nest\");",
+							"    pm.expect(res.unitNums.length).to.eq(2);",
+							"    pm.expect(res.cutOut).to.eq(true);",
+							"    pm.expect(res.service).to.eq(\"Interior Rodent\");",
+							"    pm.expect(res.targetPest).to.eq(\"Rodent\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cutOut\": true,\n    \"unitNums\": [\"1022\", \"2060\"],\n    \"observations\": \"the mouse trap got me\",\n    \"service\": \"Interior Rodent\",\n    \"targetPest\": \"Rodent\",\n    \"propertyName\": \"The Rat's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"rodent crap e'rywhere\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Interior Rodent Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"introdent_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"The Rat's Nest\");",
+							"    pm.expect(res.unitNums.length).to.eq(2);",
+							"    pm.expect(res.cutOut).to.eq(true);",
+							"    pm.expect(res.service).to.eq(\"Interior Rodent\");",
+							"    pm.expect(res.targetPest).to.eq(\"Rodent\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/lead/{{introdent_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{introdent_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Interior Rodent Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"introdent_id1\"));",
+							"    pm.expect(res.unitNums.length).to.eq(3);",
+							"    pm.expect(res.status).to.eq(\"Open\");",
+							"    pm.expect(res.cutOut).to.eq(false);",
+							"    pm.expect(res.propertyName).to.eq(\"The Rat's Nest\");",
+							"    pm.expect(res.service).to.eq(\"Interior Rodent\");",
+							"    pm.expect(res.targetPest).to.eq(\"Rodent\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"unitNums\": [\"1022\", \"2060\", \"1105\"],\n    \"cutOut\": false,\n    \"status\": \"Open\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{introdent_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{introdent_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mosquito Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"mosq_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"The Net\");",
+							"    pm.expect(res.state).to.eq(\"AZ\");",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Mosquito\");",
+							"    pm.expect(res.targetPest).to.eq(\"Other Pests\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"service\": \"Mosquito\",\n    \"targetPest\": \"Other Pests\",\n    \"propertyName\": \"The Net\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"M. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"E. N. Cephalitis\",\n    \"contactTitle\": \"manager\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mosquito Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"mosq_id1\"));",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"    pm.expect(res.propertyName).to.eq(\"The Net\");",
+							"    pm.expect(res.state).to.eq(\"AZ\");",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Mosquito\");",
+							"    pm.expect(res.targetPest).to.eq(\"Other Pests\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/lead/{{mosq_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{mosq_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mosquito Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"mosq_id1\"));",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.propertyName).to.eq(\"The Good Place\");",
+							"    pm.expect(res.status).to.eq(\"Open\");",
+							"    pm.expect(res.state).to.eq(\"AZ\");",
+							"    pm.expect(res.service).to.eq(\"Mosquito\");",
+							"    pm.expect(res.targetPest).to.eq(\"Other Pests\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"notes\": \"Lotta bugs y'all\",\n    \"status\": \"Open\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{mosq_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{mosq_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roach Assessment Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"roach_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"Roach Hotel\");",
+							"    pm.expect(res.technician).to.eq(\"R. Destroyer\");",
+							"    pm.expect(res.unitNums.length).to.eq(2);",
+							"    pm.expect(res.buildingNums.length).to.eq(2);",
+							"    pm.expect(res.service).to.eq(\"Roach Assessment\");",
+							"    pm.expect(res.targetPest).to.eq(\"Roach\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"service\": \"Roach Assessment\",\n    \"targetPest\": \"Roach\",\n    \"propertyName\": \"Roach Hotel\",\n    \"address\": \"789 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"R. Destroyer\",\n    \"madeContact\": false,\n    \"buildingNums\": [\"5\", \"18\"],\n    \"unitNums\": [\"1200\", \"2060\"],\n    \"notes\": \"sugar water everywhere\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roach Assessment Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"roach_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"Roach Hotel\");",
+							"    pm.expect(res.technician).to.eq(\"R. Destroyer\");",
+							"    pm.expect(res.buildingNums.length).to.be.above(0);",
+							"    pm.expect(res.unitNums.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Roach Assessment\");",
+							"    pm.expect(res.targetPest).to.eq(\"Roach\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/lead/{{roach_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{roach_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roach Assessment Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"Roach Motel\");",
+							"    pm.expect(res.technician).to.eq(\"Ryan Owens\");",
+							"    pm.expect(res.status).to.eq(\"Open\");",
+							"    pm.expect(res.service).to.eq(\"Roach Assessment\");",
+							"    pm.expect(res.targetPest).to.eq(\"Roach\");",
+							"    pm.expect(res.unitNums.length).to.eq(3);",
+							"    pm.expect(res.buildingNums.length).to.eq(3);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propertyName\": \"Roach Motel\",\n    \"technician\": \"Ryan Owens\",\n    \"madeContact\": true,\n    \"buildingNums\": [\"5\", \"8\", \"15\"],\n    \"unitNums\": [\"1200\", \"2060\", \"1100\"],\n    \"status\": \"Open\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{roach_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{roach_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rodent Exclusion Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"rodentex_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.numPipes).to.eq(20);",
+							"    pm.expect(res.numVents).to.eq(10);",
+							"    pm.expect(res.numMeterBoxes).to.eq(5);",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Rodent Exclusion\");",
+							"    pm.expect(res.targetPest).to.eq(\"Rodent\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numPipes\": 20,\n    \"numVents\": 10,\n    \"numMeterBoxes\": 5,\n    \"numEntryPoints\": 7,\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"service\": \"Rodent Exclusion\",\n    \"targetPest\": \"Rodent\",\n    \"propertyName\": \"The Rat's Nest\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"R. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"rat dung e'rywhere\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rodent Exclusion Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"rodentex_id1\"));",
+							"    pm.expect(res.numPipes).to.eq(20);",
+							"    pm.expect(res.numVents).to.eq(10);",
+							"    pm.expect(res.numMeterBoxes).to.eq(5);",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Rodent Exclusion\");",
+							"    pm.expect(res.targetPest).to.eq(\"Rodent\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/lead/{{rodentex_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{rodentex_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rodent Exclusion Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"rodentex_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"The Rat's Nest\");",
+							"    pm.expect(res.numPipes).to.eq(19);",
+							"    pm.expect(res.numVents).to.eq(9);",
+							"    pm.expect(res.numMeterBoxes).to.eq(4);",
+							"    pm.expect(res.numEntryPoints).to.eq(6);",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.status).to.eq(\"Open\");",
+							"    pm.expect(res.service).to.eq(\"Rodent Exclusion\");",
+							"    pm.expect(res.targetPest).to.eq(\"Rodent\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numPipes\": 19,\n    \"numVents\": 9,\n    \"numMeterBoxes\": 4,\n    \"numEntryPoints\": 6,\n    \"status\": \"Open\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{rodentex_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{rodentex_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scorpion Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"scorpion_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"Stingers\");",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.buildingNums.length).to.eq(2);",
+							"    pm.expect(res.service).to.eq(\"Exterior Scorpion\");",
+							"    pm.expect(res.targetPest).to.eq(\"Scorpion\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"buildingNums\": [\"5\", \"6\"],\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"service\": \"Exterior Scorpion\",\n    \"targetPest\": \"Scorpion\",\n    \"propertyName\": \"Stingers\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"S. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scorpion Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"scorpion_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"Stingers\");",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.buildingNums.length).to.eq(2);",
+							"    pm.expect(res.service).to.eq(\"Exterior Scorpion\");",
+							"    pm.expect(res.targetPest).to.eq(\"Scorpion\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/lead/{{scorpion_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{scorpion_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scorpion Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"scorpion_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"Stingers\");",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.buildingNums.length).to.eq(3);",
+							"    pm.expect(res.status).to.eq(\"Open\");",
+							"    pm.expect(res.service).to.eq(\"Exterior Scorpion\");",
+							"    pm.expect(res.targetPest).to.eq(\"Scorpion\");",
+							" ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"Open\",\n    \"buildingNums\": [\"5\", \"6\", \"8\"],\n    \"propertyPercentage\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{scorpion_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{scorpion_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Snake Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"snake_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.propertyName).to.eq(\"The Net\");",
+							"    pm.expect(res.state).to.eq(\"AZ\");",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Snake\");",
+							"    pm.expect(res.targetPest).to.eq(\"Snake\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"service\": \"Snake\",\n    \"targetPest\": \"Snake\",\n    \"propertyName\": \"The Net\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"S. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Slytherin\",\n    \"contactTitle\": \"manager\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Snake Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"snake_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"The Net\");",
+							"    pm.expect(res.state).to.eq(\"AZ\");",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Snake\");",
+							"    pm.expect(res.targetPest).to.eq(\"Snake\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/lead/{{snake_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{snake_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Snake Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"snake_id1\"));",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.propertyName).to.eq(\"The Good Place\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"    pm.expect(res.service).to.eq(\"Snake\");",
+							"    pm.expect(res.targetPest).to.eq(\"Snake\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propertyName\": \"The Good Place\",\n    \"notes\": \"Lotta snakes y'all\",\n    \"status\": \"New\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{snake_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{snake_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Termite Entity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"termite_id1\", pm.response.json().id);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.numTubes).to.eq(20);",
+							"    pm.expect(res.tubeDistance).to.eq(10);",
+							"    pm.expect(res.drillingDistance).to.eq(5);",
+							"    pm.expect(res.trenchingDistance).to.eq(7);",
+							"    pm.expect(res.isDrywood).to.eq(true);",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Termite\");",
+							"    pm.expect(res.targetPest).to.eq(\"Termite\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"buildingNums\": [\"5\", \"6\"],\n    \"numTubes\": 20,\n    \"tubeDistance\": 10,\n    \"drillingDistance\": 5,\n    \"trenchingDistance\": 7,\n    \"isDrywood\": true,\n    \"service\": \"Termite\",\n    \"targetPest\": \"Termite\",\n    \"propertyName\": \"The Good Place\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"T. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"wood shavin's e'rywhere\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Termite Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"termite_id1\"));",
+							"    pm.expect(res.numTubes).to.eq(20);",
+							"    pm.expect(res.tubeDistance).to.eq(10);",
+							"    pm.expect(res.drillingDistance).to.eq(5);",
+							"    pm.expect(res.trenchingDistance).to.eq(7);",
+							"    pm.expect(res.isDrywood).to.eq(true);",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.service).to.eq(\"Termite\");",
+							"    pm.expect(res.targetPest).to.eq(\"Termite\");",
+							"    pm.expect(res.status).to.eq(\"New\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/lead/{{termite_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{termite_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Termite Entity by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.id).to.eq(pm.environment.get(\"termite_id1\"));",
+							"    pm.expect(res.propertyName).to.eq(\"The Good Place\");",
+							"    pm.expect(res.numTubes).to.eq(21);",
+							"    pm.expect(res.tubeDistance).to.eq(11);",
+							"    pm.expect(res.drillingDistance).to.eq(6);",
+							"    pm.expect(res.trenchingDistance).to.eq(8);",
+							"    pm.expect(res.isDrywood).to.eq(false);",
+							"    pm.expect(res.photos.length).to.be.above(0);",
+							"    pm.expect(res.status).to.eq(\"Open\");",
+							"    pm.expect(res.service).to.eq(\"Termite\");",
+							"    pm.expect(res.targetPest).to.eq(\"Termite\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"buildingNums\": [\"5\", \"6\", \"8\"],\n    \"numTubes\": 21,\n    \"tubeDistance\": 11,\n    \"drillingDistance\": 6,\n    \"trenchingDistance\": 8,\n    \"isDrywood\": false,\n    \"status\": \"Open\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/lead/{{termite_id1}}",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"lead",
+						"{{termite_id1}}"
 					]
 				}
 			},
