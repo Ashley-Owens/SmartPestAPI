@@ -21,6 +21,7 @@ const schema = new Schema(
 		notes: { type: String },
 	},
 	{
+		explicitOnly: false,
 		queries: {
 			readAll: true,
 		},
