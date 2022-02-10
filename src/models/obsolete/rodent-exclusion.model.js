@@ -2,13 +2,16 @@ const { instances } = require("gstore-node");
 const gstore = instances.get("default");
 const { Schema } = gstore;
 
-// Create the "Scorpion" schema
+// Create the "RodentExclusion" schema
 const schema = new Schema(
 	{
-		buildingNums: { type: Array, required: true },
 		photos: { type: Array, required: true },
-		propertyPercentage: { type: Number },
+		numPipes: { type: Number, required: true },
+		numVents: { type: Number, required: true },
+		numMeterBoxes: { type: Number, required: true },
+		numEntryPoints: { type: Number, required: true },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "RodentExclusion" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
@@ -35,5 +38,5 @@ const listSettings = {
 };
 schema.queries("list", listSettings);
 
-// Generates "Scorpion" entity kind in Datastore
-module.exports = gstore.model("Scorpion", schema);
+// Generates "RodentExclusion" entity kind in Datastore
+module.exports = gstore.model("RodentExclusion", schema);

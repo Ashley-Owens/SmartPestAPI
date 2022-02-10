@@ -2,15 +2,13 @@ const { instances } = require("gstore-node");
 const gstore = instances.get("default");
 const { Schema } = gstore;
 
-// Create the "RodentExclusion" schema
+// Create the "Dewebbing" schema
 const schema = new Schema(
 	{
 		photos: { type: Array, required: true },
-		numPipes: { type: Number, required: true },
-		numVents: { type: Number, required: true },
-		numMeterBoxes: { type: Number, required: true },
-		numEntryPoints: { type: Number, required: true },
+		sprayHours: { type: Number, required: true },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "Dewebbing" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
@@ -37,5 +35,5 @@ const listSettings = {
 };
 schema.queries("list", listSettings);
 
-// Generates "RodentExclusion" entity kind in Datastore
-module.exports = gstore.model("RodentExclusion", schema);
+// Generates "Dewebbing" entity kind in Datastore
+module.exports = gstore.model("Dewebbing", schema);

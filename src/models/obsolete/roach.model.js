@@ -2,18 +2,13 @@ const { instances } = require("gstore-node");
 const gstore = instances.get("default");
 const { Schema } = gstore;
 
-// Create the "Termite" schema
+// Creates the "Roach Assessment" schema
 const schema = new Schema(
 	{
-		photos: { type: Array, required: true },
-		buildingNums: { type: Array },
-		unitNums: { type: Array },
-		numTubes: { type: Number, required: true },
-		tubeDistance: { type: Number, required: true },
-		drillingDistance: { type: Number, required: true },
-		trenchingDistance: { type: Number, required: true },
-		isDrywood: { type: Boolean, required: true },
+		buildingNums: { type: Array, required: true },
+		unitNums: { type: Array, required: true },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "RoachAssessment" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
@@ -40,5 +35,5 @@ const listSettings = {
 };
 schema.queries("list", listSettings);
 
-// Generates "Termite" entity kind in Datastore
-module.exports = gstore.model("Termite", schema);
+// Generates "RoachAssessment" entity kind in Datastore
+module.exports = gstore.model("RoachAssessment", schema);

@@ -1,5 +1,5 @@
 const express = require("express");
-const Controller = require("../controller/controller");
+const Controller = require("../../controller/controller");
 const Model = require("../models/mosquito.model");
 
 // Initializes router

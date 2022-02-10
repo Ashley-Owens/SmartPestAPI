@@ -2,12 +2,12 @@ const { instances } = require("gstore-node");
 const gstore = instances.get("default");
 const { Schema } = gstore;
 
-// Create the "Dewebbing" schema
+// Create the "Snake" schema
 const schema = new Schema(
 	{
 		photos: { type: Array, required: true },
-		sprayHours: { type: Number, required: true },
 		status: { type: String, default: "New" },
+		kind: { type: String, default: "Snake" },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
 		zipCode: { type: String, required: true },
@@ -34,5 +34,5 @@ const listSettings = {
 };
 schema.queries("list", listSettings);
 
-// Generates "Dewebbing" entity kind in Datastore
-module.exports = gstore.model("Dewebbing", schema);
+// Generates "Snake" entity kind in Datastore
+module.exports = gstore.model("Snake", schema);

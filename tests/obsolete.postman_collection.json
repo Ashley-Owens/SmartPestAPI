@@ -5011,6 +5011,191 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get All Leads in DS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/leads",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All New Leads",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/leads/new",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Open Leads",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/leads/open",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads",
+						"open"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Won Leads",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/leads/won",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads",
+						"won"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Lost Leads",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/leads/lost",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads",
+						"lost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Sent Leads",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_2}}/leads/sent",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads",
+						"sent"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
