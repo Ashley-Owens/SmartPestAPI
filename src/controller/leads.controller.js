@@ -1,35 +1,54 @@
-const { instances } = require("gstore-node");
-const gstore = instances.get("default");
+// const { instances } = require("gstore-node");
+// const gstore = instances.get("default");
+// const Model = require("../models/lead.model");
+const ds = require("../config/database");
+const datastore = ds.datastore;
+const LIMIT = 30;
+const LEAD = "lead";
 
-/* Returns all entities for the given model */
-// const getAllEntities = async (req, res, Model) => {
-// 	const pageCursor = req.query.cursor;
-// 	try {
-// 		const { entities } = await Model.list({ start: pageCursor });
-// 		return res.status(200).json(entities);
-// 	} catch (err) {
-// 		return res.status(400).json(err);
-// 	}
-// };
-
-/* Returns all leads by status type: New, Open, Won etc. */
-const getLeadsByStatus = async (req, res, status) => {
+/* Sends Lead entities using pagination */
+const getAllLeads = async (req, res) => {
+	const pageCursor = req.query.cursor;
 	try {
-		const query = gstore.ds.createQuery();
-		const [entities] = await gstore.ds.runQuery(query);
-		if (status) {
-			const filtered = entities.filter((e) => e.status === status);
-			return res.status(200).json(filtered);
-
-			// Returns All leads
-		} else {
-			return res.status(200).json(entities);
-		}
+		const results = await runPageQuery(pageCursor);
+		return res.status(200).json(results);
 	} catch (err) {
 		return res.status(400).json(err);
 	}
 };
 
+/* Returns all entities for the given query using pagination */
+async function runPageQuery(pageCursor) {
+	let query = datastore.createQuery("lead").limit(30);
+	console.log("cursor", pageCursor);
+	if (pageCursor) {
+		query = query.start(pageCursor);
+	}
+	const results = await datastore.runQuery(query);
+	const entities = results[0];
+	const info = results[1];
+	return { entities: entities, info: info };
+}
+
+/* Returns all leads by status type: New, Open, Won etc. */
+// const getLeadsByStatus = async (req, res, status) => {
+// 	try {
+// 		const query = datastore.createQuery();
+// 		const [entities] = await datastore.runQuery(query);
+// 		if (status) {
+// 			const filtered = entities.filter((e) => e.status === status);
+// 			return res.status(200).json(filtered);
+
+// 			// Returns All leads
+// 		} else {
+// 			return res.status(200).json(entities);
+// 		}
+// 	} catch (err) {
+// 		return res.status(400).json(err);
+// 	}
+// };
+
 module.exports = {
-	getLeadsByStatus,
+	// getLeadsByStatus,
+	getAllLeads,
 };

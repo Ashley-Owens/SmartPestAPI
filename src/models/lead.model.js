@@ -29,10 +29,11 @@ const schema = new Schema(
 );
 
 // Query shortcut for listing entities
-const listSettings = {
-	order: { property: "dateCreated", descending: true },
-};
-schema.queries("list", listSettings);
+// const listSettings = {
+// 	limit: 30,
+// 	order: { property: "dateCreated", descending: true },
+// };
+// schema.queries("list", listSettings);
 
 // Generates "BedBugInspection" entity kind in Datastore
 module.exports = gstore.model("lead", schema);
