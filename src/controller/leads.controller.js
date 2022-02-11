@@ -2,7 +2,7 @@ const { instances } = require("gstore-node");
 const gstore = instances.get("default");
 const Model = require("../models/lead.model");
 
-/* Sends Lead entities using pagination */
+/* Accepts "limit" query string, sending Lead entities using pagination */
 const getAllLeads = async (req, res) => {
 	try {
 		const query = await Model.list(req.query);
@@ -12,6 +12,7 @@ const getAllLeads = async (req, res) => {
 	}
 };
 
+// #To Do: add search capability
 const searchLeads = async (req, res) => {
 	try {
 		console.log(req.body.search);
