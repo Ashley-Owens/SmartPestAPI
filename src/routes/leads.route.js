@@ -8,20 +8,6 @@ router.use(express.json());
 
 // Handles router requests
 router.get("/", async (req, res) => Controller.getAllLeads(req, res));
-// router.get("/new", async (req, res) =>
-// 	Controller.getLeadsByStatus(req, res, "New")
-// );
-// router.get("/open", async (req, res) =>
-// 	Controller.getLeadsByStatus(req, res, "Open")
-// );
-// router.get("/won", async (req, res) =>
-// 	Controller.getLeadsByStatus(req, res, "Won")
-// );
-// router.get("/lost", async (req, res) =>
-// 	Controller.getLeadsByStatus(req, res, "Lost")
-// );
-// router.get("/sent", async (req, res) =>
-// 	Controller.getLeadsByStatus(req, res, "Sent")
-// );
+router.post("/search", async (req, res) => Controller.searchLeads(req, res));
 
 module.exports = router;
