@@ -15,8 +15,7 @@ const getAllLeads = async (req, res) => {
 // #To Do: add search capability
 const searchLeads = async (req, res) => {
 	try {
-		console.log(req.body.search);
-		const query = await Model.list();
+		const query = await Model.list(req.body.search);
 		return res.status(200).json(query);
 	} catch (err) {
 		return res.status(400).json(err);
