@@ -12,10 +12,17 @@ const getAllLeads = async (req, res) => {
 	}
 };
 
-// #To Do: add search capability
+// Uses Post request data to update Model list and perform search
 const searchLeads = async (req, res) => {
 	try {
-		const query = await Model.list(req.body.search);
+		const search = req.body.search;
+		// search.filters[0].slice(-1).toLowerCase;
+		// Object.keys(search).forEach(function (key) {
+		// 	console.log(search[key]);
+		// 	search[key] = search[key].toLowerCase();
+		// });
+		// console.log(search);
+		const query = await Model.list(search);
 		return res.status(200).json(query);
 	} catch (err) {
 		return res.status(400).json(err);
