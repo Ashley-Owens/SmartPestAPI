@@ -12,21 +12,26 @@ const getAllLeads = async (req, res) => {
 	}
 };
 
-// Uses Post request data to update Model list and perform search
+/* Uses Post request data to update Model list and perform search */
 const searchLeads = async (req, res) => {
 	try {
-		const search = req.body.search;
-		// search.filters[0].slice(-1).toLowerCase;
-		// Object.keys(search).forEach(function (key) {
-		// 	console.log(search[key]);
-		// 	search[key] = search[key].toLowerCase();
-		// });
-		// console.log(search);
-		const query = await Model.list(search);
+		const data = convertFilterCase(req.body.search);
+		const query = await Model.list(data);
 		return res.status(200).json(query);
 	} catch (err) {
 		return res.status(400).json(err);
 	}
+};
+
+/* Converts last item in filter array to lower case  */
+const convertFilterCase = (data) => {
+	data.filters.forEach((arr) => {
+		if (arr.length >= 2) {
+			var last = arr.pop().toLowerCase();
+			arr.push(last);
+		}
+	});
+	return data;
 };
 
 module.exports = {
