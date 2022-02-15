@@ -23,7 +23,7 @@ const searchLeads = async (req, res) => {
 	}
 };
 
-/* Converts last item in filter array to lower case  */
+/* Converts search (last) item in filter array to lower case  */
 const convertFilterCase = (data) => {
 	data.filters.forEach((arr) => {
 		if (arr.length >= 2) {
