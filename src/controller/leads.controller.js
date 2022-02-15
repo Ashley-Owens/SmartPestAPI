@@ -2,10 +2,13 @@ const { instances } = require("gstore-node");
 const gstore = instances.get("default");
 const Model = require("../models/lead.model");
 
-/* Accepts "limit" query string, sending Lead entities using pagination */
+/* Accepts "limit" and "cursor" query strings, sending entities using pagination */
 const getAllLeads = async (req, res) => {
 	try {
-		const query = await Model.list(req.query);
+		const query = await Model.list({
+			start: req.query.cursor,
+			limit: req.query.limit,
+		});
 		return res.status(200).json(query);
 	} catch (err) {
 		return res.status(400).json(err);

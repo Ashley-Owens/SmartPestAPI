@@ -10,12 +10,16 @@ indexes:
       properties:
           - name: service
             direction: asc
+          - name: propertyName
+            direction: asc
           - name: dateCreated
             direction: desc
 
     - kind: Lead
       properties:
           - name: state
+            direction: asc
+          - name: propertyName
             direction: asc
           - name: dateCreated
             direction: desc
@@ -24,6 +28,8 @@ indexes:
       properties:
           - name: status
             direction: asc
+          - name: propertyName
+            direction: asc
           - name: dateCreated
             direction: desc
 
@@ -31,12 +37,16 @@ indexes:
       properties:
           - name: targetPest
             direction: asc
+          - name: propertyName
+            direction: asc
           - name: dateCreated
             direction: desc
 
     - kind: Lead
       properties:
           - name: technician
+            direction: asc
+          - name: propertyName
             direction: asc
           - name: dateCreated
             direction: desc

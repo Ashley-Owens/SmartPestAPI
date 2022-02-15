@@ -30,7 +30,10 @@ const schema = new Schema(
 
 // Query shortcut for listing entities: must follow order of index.yaml
 const listSettings = {
-	order: [{ property: "dateCreated", descending: true }],
+	order: [
+		{ property: "propertyName" },
+		{ property: "dateCreated", descending: true },
+	],
 };
 schema.queries("list", listSettings);
 
