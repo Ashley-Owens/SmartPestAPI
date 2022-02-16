@@ -50,6 +50,7 @@ const updateEntity = async (req, res) => {
 	}
 };
 
+/* Iterates through request body converting strings to lower case  */
 const convertCase = (data) => {
 	Object.keys(data).forEach(function (key) {
 		const value = data[key];

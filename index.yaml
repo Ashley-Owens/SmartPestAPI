@@ -1,6 +1,13 @@
 indexes:
     - kind: Lead
       properties:
+          - name: dateCreated
+            direction: desc
+          - name: propertyName
+            direction: asc
+
+    - kind: Lead
+      properties:
           - name: propertyName
             direction: asc
           - name: dateCreated
