@@ -13,7 +13,7 @@ const schema = new Schema(
 		state: { type: String, required: true },
 		targetPest: { type: String, required: true },
 		service: { type: String, required: true },
-		status: { type: String, default: "New" },
+		status: { type: String, default: "new" },
 		dateCreated: { type: Date, default: gstore.defaultValues.NOW },
 		madeContact: { type: Boolean, required: true },
 		contactName: { type: String },
@@ -28,11 +28,14 @@ const schema = new Schema(
 	}
 );
 
-// Query shortcut for listing entities
+// Query shortcut for listing entities: must follow order of index.yaml
 const listSettings = {
-	order: { property: "dateCreated", descending: true },
+	order: [
+		{ property: "propertyName" },
+		{ property: "dateCreated", descending: true },
+	],
 };
 schema.queries("list", listSettings);
 
-// Generates "BedBugInspection" entity kind in Datastore
-module.exports = gstore.model("lead", schema);
+// Generates "Lead" entity kind in Datastore
+module.exports = gstore.model("Lead", schema);

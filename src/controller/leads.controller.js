@@ -1,35 +1,49 @@
-const { instances } = require("gstore-node");
-const gstore = instances.get("default");
+const Model = require("../models/lead.model");
 
-/* Returns all entities for the given model */
-// const getAllEntities = async (req, res, Model) => {
-// 	const pageCursor = req.query.cursor;
-// 	try {
-// 		const { entities } = await Model.list({ start: pageCursor });
-// 		return res.status(200).json(entities);
-// 	} catch (err) {
-// 		return res.status(400).json(err);
-// 	}
-// };
-
-/* Returns all leads by status type: New, Open, Won etc. */
-const getLeadsByStatus = async (req, res, status) => {
+/* Accepts "limit" and "cursor" query strings, sending all entities using pagination */
+const getAllLeads = async (req, res) => {
 	try {
-		const query = gstore.ds.createQuery();
-		const [entities] = await gstore.ds.runQuery(query);
-		if (status) {
-			const filtered = entities.filter((e) => e.status === status);
-			return res.status(200).json(filtered);
-
-			// Returns All leads
-		} else {
-			return res.status(200).json(entities);
-		}
+		const query = await Model.list({
+			start: req.query.cursor,
+			limit: req.query.limit,
+		});
+		return res.status(200).json(query);
 	} catch (err) {
 		return res.status(400).json(err);
 	}
 };
 
+/* Uses Post request data to update Model list and perform search */
+const searchLeads = async (req, res) => {
+	try {
+		let data = Model.sanitize(req.body.search);
+		data = convertFilters(data);
+		const query = await Model.list(data);
+		return res.status(200).json(query);
+	} catch (err) {
+		return res.status(400).json(err);
+	}
+};
+
+/* Converts filter data to lower case and/or datetime object */
+const convertFilters = (data) => {
+	data.filters.forEach((arr) => {
+		if (arr.length >= 2) {
+			if (arr[0] === "dateCreated") {
+				// Convert string to date object
+				let query = arr.pop();
+				let date = new Date(query);
+				arr.push(date);
+			} else {
+				var query = arr.pop().toLowerCase();
+				arr.push(query);
+			}
+		}
+	});
+	return data;
+};
+
 module.exports = {
-	getLeadsByStatus,
+	searchLeads,
+	getAllLeads,
 };
