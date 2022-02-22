@@ -24,6 +24,19 @@ indexes:
 
     - kind: Lead
       properties:
+          - name: madeContact
+            direction: asc
+          - name: targetPest
+            direction: asc
+          - name: service
+            direction: asc
+          - name: propertyName
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
           - name: state
             direction: asc
           - name: propertyName
@@ -52,6 +65,17 @@ indexes:
     - kind: Lead
       properties:
           - name: technician
+            direction: asc
+          - name: propertyName
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: technician
+            direction: asc
+          - name: targetPest
             direction: asc
           - name: propertyName
             direction: asc
