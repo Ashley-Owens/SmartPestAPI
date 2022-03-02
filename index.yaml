@@ -1,16 +1,14 @@
 indexes:
     - kind: Lead
       properties:
-          - name: propertyName
-            direction: asc
           - name: dateCreated
             direction: desc
+          - name: propertyName
+            direction: asc
 
     - kind: Lead
       properties:
-          - name: service
-            direction: asc
-          - name: propertyName
+          - name: madeContact
             direction: asc
           - name: dateCreated
             direction: desc
@@ -28,9 +26,46 @@ indexes:
 
     - kind: Lead
       properties:
+          - name: propertyName
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: service
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: service
+            direction: asc
+          - name: propertyName
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: state
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
           - name: state
             direction: asc
           - name: propertyName
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: status
             direction: asc
           - name: dateCreated
             direction: desc
@@ -48,7 +83,21 @@ indexes:
       properties:
           - name: targetPest
             direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: targetPest
+            direction: asc
           - name: propertyName
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: technician
             direction: asc
           - name: dateCreated
             direction: desc
