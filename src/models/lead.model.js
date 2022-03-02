@@ -8,8 +8,8 @@ const schema = new Schema(
 		technician: { type: String, required: true },
 		propertyName: { type: String, required: true },
 		address: { type: String, required: true },
-		zipCode: { type: String, required: true },
-		city: { type: String, required: true },
+		zipCode: { type: String },
+		city: { type: String },
 		state: { type: String, required: true },
 		targetPest: { type: String, required: true },
 		service: { type: String, required: true },
@@ -30,10 +30,7 @@ const schema = new Schema(
 
 // Query shortcut for listing entities: must follow order of index.yaml
 const listSettings = {
-	order: [
-		{ property: "propertyName" },
-		{ property: "dateCreated", descending: true },
-	],
+	order: [{ property: "dateCreated", descending: true }],
 };
 schema.queries("list", listSettings);
 
