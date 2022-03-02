@@ -203,8 +203,8 @@
 							"",
 							"pm.test(\"content is valid\", function () {",
 							"    const res = pm.response.json();",
-							"    pm.expect(res.service).to.eq(\"bedbug inspection\");",
-							"    pm.expect(res.targetPest).to.eq(\"bedbug\");",
+							"    pm.expect(res.service).to.eq(\"bed bug inspection\");",
+							"    pm.expect(res.targetPest).to.eq(\"bed bug\");",
 							"    pm.expect(res.propertyName).to.eq(\"buggy hotel\");",
 							"    pm.expect(res.inspectionType).to.eq(\"k9\");",
 							"    pm.expect(res.reason).to.eq(\"health and safety\");",
@@ -222,7 +222,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"inspectionType\": \"K9\",\n    \"reason\": \"Health and safety\",\n    \"service\": \"Bedbug Inspection\",\n    \"targetPest\": \"Bedbug\", \n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
+					"raw": "{\n    \"inspectionType\": \"K9\",\n    \"reason\": \"Health and safety\",\n    \"service\": \"Bed bug Inspection\",\n    \"targetPest\": \"Bed bug\", \n    \"propertyName\": \"Buggy Hotel\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -255,8 +255,8 @@
 							"pm.test(\"content is valid\", function () {",
 							"    const res = pm.response.json();",
 							"    pm.expect(res.id).to.eq(pm.environment.get(\"bbinspect_id1\"));",
-							"    pm.expect(res.service).to.eq(\"bedbug inspection\");",
-							"    pm.expect(res.targetPest).to.eq(\"bedbug\");",
+							"    pm.expect(res.service).to.eq(\"bed bug inspection\");",
+							"    pm.expect(res.targetPest).to.eq(\"bed bug\");",
 							"    pm.expect(res.propertyName).to.eq(\"buggy hotel\");",
 							"    pm.expect(res.inspectionType).to.eq(\"k9\");",
 							"    pm.expect(res.reason).to.eq(\"health and safety\");",
@@ -298,8 +298,8 @@
 							"    pm.expect(res.id).to.eq(pm.environment.get(\"bbinspect_id1\"));",
 							"    pm.expect(res.propertyName).to.eq(\"bugatropolis motel\");",
 							"    pm.expect(res.status).to.eq(\"open\");",
-							"    pm.expect(res.service).to.eq(\"bedbug inspection\");",
-							"    pm.expect(res.targetPest).to.eq(\"bedbug\");",
+							"    pm.expect(res.service).to.eq(\"bed bug inspection\");",
+							"    pm.expect(res.targetPest).to.eq(\"bed bug\");",
 							"    pm.expect(res.inspectionType).to.eq(\"visual\");",
 							"    pm.expect(res.reason).to.eq(null);",
 							"});"
@@ -431,8 +431,8 @@
 							"pm.test(\"content is valid\", function () {",
 							"    const res = pm.response.json();",
 							"    pm.expect(res.propertyName).to.eq(\"buggy hotel\");",
-							"    pm.expect(res.service).to.eq(\"bedbug treatment\");",
-							"    pm.expect(res.targetPest).to.eq(\"bedbug\");",
+							"    pm.expect(res.service).to.eq(\"bed bug treatment\");",
+							"    pm.expect(res.targetPest).to.eq(\"bed bug\");",
 							"    pm.expect(res.unitNums.length).to.eq(2);",
 							"    pm.expect(res.observations).to.eq(\"it's pandelerium!\");",
 							"    pm.expect(res.photos.length).to.be.above(0);",
@@ -448,7 +448,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"unitNums\": [\"123A\", \"1022\"],\n    \"observations\": \"It's pandelerium!\",\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"service\": \"Bedbug Treatment\",\n    \"targetPest\": \"Bedbug\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
+					"raw": "{\n    \"unitNums\": [\"123A\", \"1022\"],\n    \"observations\": \"It's pandelerium!\",\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"service\": \"Bed bug Treatment\",\n    \"targetPest\": \"Bed bug\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -482,8 +482,8 @@
 							"    const res = pm.response.json();",
 							"    pm.expect(res.id).to.eq(pm.environment.get(\"bbtreat_id1\"));",
 							"    pm.expect(res.propertyName).to.eq(\"buggy hotel\");",
-							"    pm.expect(res.service).to.eq(\"bedbug treatment\");",
-							"    pm.expect(res.targetPest).to.eq(\"bedbug\");",
+							"    pm.expect(res.service).to.eq(\"bed bug treatment\");",
+							"    pm.expect(res.targetPest).to.eq(\"bed bug\");",
 							"    pm.expect(res.observations).to.eq(\"it's pandelerium!\");",
 							"    pm.expect(res.photos.length).to.be.above(0);",
 							"});"
@@ -570,8 +570,8 @@
 							"pm.test(\"content is valid\", function () {",
 							"    const res = pm.response.json();",
 							"    pm.expect(res.propertyName).to.eq(\"buggy hotel\");",
-							"    pm.expect(res.service).to.eq(\"extreme bedbug\");",
-							"    pm.expect(res.targetPest).to.eq(\"bedbug\");",
+							"    pm.expect(res.service).to.eq(\"extreme bed bug\");",
+							"    pm.expect(res.targetPest).to.eq(\"bed bug\");",
 							"    pm.expect(res.unitNums.length).to.eq(2);",
 							"    pm.expect(res.observations).to.eq(\"it's pandelerium!\");",
 							"    pm.expect(res.reason).to.eq(\"move out\");",
@@ -588,7 +588,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"unitNums\": [\"123A\", \"1022\"],\n    \"observations\": \"It's pandelerium!\",\n    \"reason\": \"Move out\",\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"service\": \"Extreme Bedbug\",\n    \"targetPest\": \"Bedbug\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
+					"raw": "{\n    \"unitNums\": [\"123A\", \"1022\"],\n    \"observations\": \"It's pandelerium!\",\n    \"reason\": \"Move out\",\n    \"photos\": [\"mockphoto@faker.com\"],\n    \"propertyName\": \"Buggy Hotel\",\n    \"service\": \"Extreme Bed bug\",\n    \"targetPest\": \"Bed bug\",\n    \"address\": \"456 N. Smart St.\",\n    \"city\": \"Mesa\",\n    \"state\": \"AZ\",\n    \"zipCode\": \"85233\",\n    \"technician\": \"B. Destroyer\",\n    \"madeContact\": true,\n    \"contactName\": \"Ovie Whelmed\",\n    \"contactTitle\": \"manager\",\n    \"notes\": \"infested yo\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -622,8 +622,8 @@
 							"    const res = pm.response.json();",
 							"    pm.expect(res.id).to.eq(pm.environment.get(\"extremebb_id1\"));",
 							"    pm.expect(res.propertyName).to.eq(\"buggy hotel\");",
-							"    pm.expect(res.service).to.eq(\"extreme bedbug\");",
-							"    pm.expect(res.targetPest).to.eq(\"bedbug\");",
+							"    pm.expect(res.service).to.eq(\"extreme bed bug\");",
+							"    pm.expect(res.targetPest).to.eq(\"bed bug\");",
 							"    pm.expect(res.unitNums.length).to.eq(2);",
 							"    pm.expect(res.observations).to.eq(\"it's pandelerium!\");",
 							"    pm.expect(res.reason).to.eq(\"move out\");",
@@ -667,8 +667,8 @@
 							"pm.test(\"content is valid\", function () {",
 							"    const res = pm.response.json();",
 							"    pm.expect(res.propertyName).to.eq(\"buggy hotel\");",
-							"    pm.expect(res.service).to.eq(\"extreme bedbug\");",
-							"    pm.expect(res.targetPest).to.eq(\"bedbug\");",
+							"    pm.expect(res.service).to.eq(\"extreme bed bug\");",
+							"    pm.expect(res.targetPest).to.eq(\"bed bug\");",
 							"    pm.expect(res.unitNums.length).to.eq(3);",
 							"    pm.expect(res.observations).to.eq(\"it's pandelerium!\");",
 							"    pm.expect(res.reason).to.eq(\"cluttered\");",
@@ -3064,7 +3064,7 @@
 			"response": []
 		},
 		{
-			"name": "Search by Property",
+			"name": "Search: madeContact + targetPest + service",
 			"event": [
 				{
 					"listen": "test",
@@ -3077,7 +3077,7 @@
 							"pm.test(\"content is valid\", function () {",
 							"    const res = pm.response.json().entities;",
 							"    pm.expect(res.length).to.be.above(0);",
-							"    pm.expect(res[0].propertyName).to.eq(\"roach motel\");",
+							"    pm.expect(res[0].propertyName).to.eq(\"the good place\");",
 							"});",
 							""
 						],
@@ -3090,7 +3090,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"search\": {\n        \"limit\": 1,\n       \"filters\": [\n           [\"propertyName\", \"=\", \"Roach Motel\"]\n        ]\n    }\n}",
+					"raw": "{\n    \"search\": {\n        \"limit\": 5,\n        \"filters\": [\n            [\"targetPest\", \"general pest\"],\n            [\"madeContact\", \"=\", true],\n            [\"service\", \"carpet beetle\"]\n        ]\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -3111,7 +3111,7 @@
 			"response": []
 		},
 		{
-			"name": "Search by Service",
+			"name": "Search: propertyName + dateCreated",
 			"event": [
 				{
 					"listen": "test",
@@ -3124,8 +3124,9 @@
 							"pm.test(\"content is valid\", function () {",
 							"    const res = pm.response.json().entities;",
 							"    pm.expect(res.length).to.be.above(0);",
-							"    pm.expect(res[0].service).to.eq(\"roach assessment\");",
-							"});"
+							"    pm.expect(res[0].propertyName).to.eq(\"the good place\");",
+							"});",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -3136,7 +3137,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"search\": {\n       \"filters\": [\n           [\"service\", \"=\", \"Roach Assessment\"]\n        ]\n    }\n}",
+					"raw": "{\n    \"search\": {\n        \"limit\": 1,\n        \"filters\": [\n           [\"propertyName\", \"=\", \"the good place\"],\n           [\"dateCreated\", \"<=\", \"02-15-2022\"],\n           [\"dateCreated\", \">\", \"02-13-2022\"]\n        ]\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -3157,7 +3158,99 @@
 			"response": []
 		},
 		{
-			"name": "Search by State & Property",
+			"name": "Search: service + propertyName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json().entities;",
+							"    pm.expect(res.length).to.be.above(0);",
+							"    pm.expect(res[0].service).to.eq(\"carpet beetle\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"search\": {\n       \"filters\": [\n           [\"service\", \"=\", \"Carpet Beetle\"],\n           [\"propertyName\", \"=\", \"the good place\"]\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/leads/search",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search: service + dateCreated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json().entities;",
+							"    pm.expect(res.length).to.be.above(0);",
+							"    pm.expect(res[0].service).to.eq(\"carpet beetle\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"search\": {\n       \"filters\": [\n           [\"service\", \"=\", \"carpet beetle\"],\n           [\"dateCreated\", \"<=\", \"02-15-2022\"],\n           [\"dateCreated\", \">\", \"02-13-2022\"]  \n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/leads/search",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search: state + propertyName",
 			"event": [
 				{
 					"listen": "test",
@@ -3183,7 +3276,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"search\": {\n       \"filters\": [\n           [\"state\", \"=\", \"nv\"],\n           [\"propertyName\", \"=\", \"the oasis\"]\n           \n        ]\n    }\n}",
+					"raw": "{\n    \"search\": {\n       \"filters\": [\n           [\"state\", \"=\", \"nv\"],\n           [\"propertyName\", \"=\", \"the oasis\"]\n        ]\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -3204,7 +3297,53 @@
 			"response": []
 		},
 		{
-			"name": "Search by Status",
+			"name": "Search: state + dateCreated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json().entities;",
+							"    pm.expect(res.length).to.be.above(0);",
+							"    pm.expect(res[0].state).to.eq(\"nv\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"search\": {\n       \"filters\": [\n           [\"state\", \"=\", \"nv\"],\n           [\"dateCreated\", \"<=\", \"02-15-2022\"],\n           [\"dateCreated\", \">\", \"02-13-2022\"]\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/leads/search",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search: status + dateCreated",
 			"event": [
 				{
 					"listen": "test",
@@ -3250,7 +3389,53 @@
 			"response": []
 		},
 		{
-			"name": "Search by Target Pest",
+			"name": "Search: status + propertyName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json().entities;",
+							"    pm.expect(res.length).to.be.lessThan(31);",
+							"    pm.expect(res[0].status).to.eq(\"new\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"search\": {\n       \"filters\": [\n           [\"status\", \"=\", \"New\"],\n           [\"propertyName\", \"the oasis\"]\n        ],\n        \"limit\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/leads/search",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search: targetPest + dateCreated",
 			"event": [
 				{
 					"listen": "test",
@@ -3299,7 +3484,7 @@
 			"response": []
 		},
 		{
-			"name": "TargetPest Cursor",
+			"name": "Search: targetPest cursor",
 			"event": [
 				{
 					"listen": "test",
@@ -3327,7 +3512,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"search\": {\n       \"filters\": [\n           [\"targetPest\", \"=\", \"Roach\"]\n        ],\n        \"limit\": 2,\n        \"start\": \"CmQKHQoMcHJvcGVydHlOYW1lEg0aC3JvYWNoIGhvdGVsChgKC2RhdGVDcmVhdGVkEgkIgMnjip2A9gISJWoQendufnNtYXJ0cGVzdGFwaXIRCxIETGVhZBiAgICY9Of/CgwYACAA\"\n    }\n}",
+					"raw": "{\n    \"search\": {\n       \"filters\": [\n           [\"targetPest\", \"=\", \"Roach\"]\n        ],\n        \"limit\": 2,\n        \"start\": \"{{cursor3}}\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -3348,7 +3533,53 @@
 			"response": []
 		},
 		{
-			"name": "Search by Technician",
+			"name": "Search: targetPest + propertyName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json().entities;",
+							"    pm.expect(res.length).to.be.above(0);",
+							"    pm.expect(res[0].targetPest).to.eq(\"roach\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"search\": {\n       \"limit\": 5,\n       \"filters\": [\n           [\"targetPest\", \"=\", \"Roach\"],\n           [\"propertyName\", \"roach motel\"]\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/leads/search",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search: technician + dateCreated",
 			"event": [
 				{
 					"listen": "test",
@@ -3394,7 +3625,53 @@
 			"response": []
 		},
 		{
-			"name": "Search by Date",
+			"name": "Search: technician + targetPest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    const res = pm.response.json().entities;",
+							"    pm.expect(res.length).to.be.above(0);",
+							"    pm.expect(res[0].technician).to.eq(\"ryan owens\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"search\": {\n       \"filters\": [\n           [\"technician\", \"=\", \"Ryan Owens\"],\n           [\"targetPest\", \"roach\"]\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_2}}/leads/search",
+					"host": [
+						"{{url_2}}"
+					],
+					"path": [
+						"leads",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search: dateCreated + propertyName",
 			"event": [
 				{
 					"listen": "test",
@@ -3414,7 +3691,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"search\": {\n        \"order\": [\n            { \"property\": \"dateCreated\", \"descending\": true },\n            { \"property\": \"propertyName\" }\n            \n\t\t   \n        ],\n       \"filters\": [\n           [\"dateCreated\", \"<=\", \"02-15-2022\"],\n           [\"dateCreated\", \">\", \"02-13-2022\"]\n        ]\n    }\n}",
+					"raw": "{\n    \"search\": {\n        \"order\": [\n            { \"property\": \"dateCreated\", \"descending\": true }\n            \n        ],\n       \"filters\": [\n           [\"dateCreated\", \"<=\", \"02-15-2022\"],\n           [\"dateCreated\", \">\", \"02-13-2022\"],\n           [\"propertyName\", \"the good place\"]\n        ]\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
