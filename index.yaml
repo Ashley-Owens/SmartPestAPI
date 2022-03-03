@@ -8,7 +8,32 @@ indexes:
 
     - kind: Lead
       properties:
+          - name: madeContact
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: madeContact
+            direction: asc
+          - name: targetPest
+            direction: asc
+          - name: service
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
           - name: propertyName
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: service
             direction: asc
           - name: dateCreated
             direction: desc
@@ -26,7 +51,21 @@ indexes:
       properties:
           - name: state
             direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: state
+            direction: asc
           - name: propertyName
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: status
             direction: asc
           - name: dateCreated
             direction: desc
@@ -44,6 +83,13 @@ indexes:
       properties:
           - name: targetPest
             direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: targetPest
+            direction: asc
           - name: propertyName
             direction: asc
           - name: dateCreated
@@ -53,7 +99,23 @@ indexes:
       properties:
           - name: technician
             direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: technician
+            direction: asc
           - name: propertyName
+            direction: asc
+          - name: dateCreated
+            direction: desc
+
+    - kind: Lead
+      properties:
+          - name: technician
+            direction: asc
+          - name: targetPest
             direction: asc
           - name: dateCreated
             direction: desc

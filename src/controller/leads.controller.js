@@ -29,12 +29,13 @@ const searchLeads = async (req, res) => {
 const convertFilters = (data) => {
 	data.filters.forEach((arr) => {
 		if (arr.length >= 2) {
+			let value = arr[arr.length - 1];
 			if (arr[0] === "dateCreated") {
 				// Convert string to date object
 				let query = arr.pop();
 				let date = new Date(query);
 				arr.push(date);
-			} else {
+			} else if (typeof value === "string" || value instanceof String) {
 				var query = arr.pop().toLowerCase();
 				arr.push(query);
 			}
